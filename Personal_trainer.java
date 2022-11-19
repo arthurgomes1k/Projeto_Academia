@@ -56,7 +56,4 @@ public class Personal_trainer {
     }
 
 
-
-
-
 }
