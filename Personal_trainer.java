@@ -13,41 +13,44 @@ public class Personal_trainer {
     }
 
     public void realizarLogin() {
-        
+
     }
 
     public void registrarCliente() {
-        
+
     }
 
     public void acessarClientes() {
-        
+
     }
 
     public void acessarPerfilCliente() {
-        
+
     }
 
     public void acessarHistoricoDeTesteDoCliente() {
-        
+
     }
 
     public void gerarRelatorioCliente() {
-        
+
     }
 
     public void acessarTreinos() {
-        
+        //if(listaDeTreinos.size() == 0){
+        //    System.out.println("Lista Vazia");
+        //}
+        //System.out.println(listaDeTreinos);
     }
 
     public void acessarPersonais() {
-        
+
     }
 
     public void acessarPaginaDeHorarios() {
-        
+
     }
-    
+
     public void adicionarTreino(){
 
     }

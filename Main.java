@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {   
+    public static void Main(String[] args) {
 
         Scanner input = new Scanner(System.in);
         Administrador dono = new Administrador();
@@ -20,10 +20,9 @@ public class Main {
         dono.acessarClientes();
         dono.removerCliente(cliente);
 
-        System.out.println("teste git");
 
-        
+
 
     }
-    
+
 }

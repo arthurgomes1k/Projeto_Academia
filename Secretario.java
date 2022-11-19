@@ -10,6 +10,6 @@ public class Secretario {
     public String getHorario() {
         return horario;
     }
-    
-    
+
+
 }

@@ -49,11 +49,19 @@ public class Usuario {
     }
 
     public void realizarLogin() {
-        
+
     }
 
     public void acessarPerfil() {
-        
+
     }
-    
+
+    public void acessarTreinos(){
+
+    }
+
+    public void acessarPersonais(){
+
+    }
+
 }

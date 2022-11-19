@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Set;
 
 public class Planos {
-    
+
     private int valor;
     ArrayList<String> planos = new ArrayList();
-    private int quantidade; 
-    
+    private int quantidade;
+
     public int getValor() {
         return valor;
     }
@@ -31,6 +31,6 @@ public class Planos {
     public void comprarPlano(){
 
     }
-    
-    
+
+
 }
