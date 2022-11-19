@@ -19,7 +19,8 @@ public class Main {
         dono.registrarCliente(cliente);
         dono.acessarClientes();
         dono.removerCliente(cliente);
-        
+
+        System.out.println("teste git");
 
         
 
