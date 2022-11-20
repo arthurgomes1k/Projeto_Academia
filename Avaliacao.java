@@ -1,4 +1,4 @@
-package Projeto_Academia;
+package Aplicativo_Java;
 
 public class Avaliacao {
 

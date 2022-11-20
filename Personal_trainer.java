@@ -1,4 +1,4 @@
-package Projeto_Academia;
+package Aplicativo_Java;
 
 public class Personal_trainer extends Usuario{
 
@@ -69,4 +69,3 @@ public class Personal_trainer extends Usuario{
 
 
 }
-

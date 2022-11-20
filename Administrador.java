@@ -1,4 +1,4 @@
-package Projeto_Academia;
+package Aplicativo_Java;
 
 public class Administrador extends Usuario {
 
@@ -22,12 +22,34 @@ public class Administrador extends Usuario {
         return plano;
     }
 
-    public void realizarRegistro() {
+    public void realizarRegistro(String nome, String senha, String acesso, String email, Stirng numero_contato) {
+        this.nome = nome;
+        this.senha = senha;
+        this.acesso = acesso;
+        this.email = email;
+        this.numero_contato = numero_contato;
         
+    }
+
+    public void verificarLogin(String nome, String senha){
+        boolean correto = false;
+        if(nome != getNome() || senha != getSenha()){
+            System.out.println("Nome de usuario ou senha incorreta");
+        }
+        else{
+            correto = true;
+        }
     }
     
     @Override
-    public void realizarLogin(){
+    public void realizarLogin(String nome, String senha){
+        do{
+            verificarLogin(nome, senha);
+        }while(correto == false);
+        if(correto == true;){
+            System.out.println("Você está logado");
+            System.out.println("Bem vindo à OxyGym");
+        }          
 
     }
 
@@ -106,13 +128,14 @@ public class Administrador extends Usuario {
 
     @Override
     public void acessarTreinos(){
-        if(acamedia.treinos.size() == 0) {
+        if(acamedia.treinos.size() == 0){
             System.out.println("Lista de treinos vazia!");
-        } else {
+        else{
             System.out.println(academia.treinos);
         }
+        }
+        
     }
-
 
     public void removerTreinos(){
 

@@ -1,4 +1,4 @@
-package Projeto_Academia;
+package Aplicativo_Java;
 
 public class Usuario {
 
@@ -49,6 +49,10 @@ public class Usuario {
     }
 
     public void realizarLogin() {
+        
+    }
+
+    public void verificarLogin(){
         
     }
 
