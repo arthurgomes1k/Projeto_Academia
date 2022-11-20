@@ -1,59 +1,72 @@
-package projeto_academia_002;
+package Aplicativo_Java;
 
-public class Personal_trainer {
+public class Personal_trainer extends Usuario{
 
-    private String horario;
+    private String horario_inicio;
+    private String horario_saida;
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setHorario_inicio(String horario_inicio) {
+        this.horario_inicio = horario_inicio;
     }
 
-    public String getHorario() {
-        return horario;
+    public String getHorario_inicio() {
+        return horario_inicio;
+    }
+    
+    public void setHorario_saida(String horario_saida) {
+        this.horario_saida = horario_saida;
+    }
+
+    public String getHorario_saida() {
+        return horario_saida;
     }
 
     public void realizarLogin() {
-
+        
     }
 
     public void registrarCliente() {
-
+        
     }
 
     public void acessarClientes() {
-
+        
     }
 
     public void acessarPerfilCliente() {
-
+        
     }
 
     public void acessarHistoricoDeTesteDoCliente() {
-
+        
     }
 
     public void gerarRelatorioCliente() {
-
+        
     }
 
     public void acessarTreinos() {
-        //if(listaDeTreinos.size() == 0){
-        //    System.out.println("Lista Vazia");
-        //}
-        //System.out.println(listaDeTreinos);
+        if(listaDeTreinos.size() == 0){
+            System.out.println("Lista Vazia");
+          }
+          System.out.println(listaDeTreinos);
     }
 
     public void acessarPersonais() {
-
+        
     }
 
     public void acessarPaginaDeHorarios() {
-
+        
     }
-
+    
     public void adicionarTreino(){
 
     }
 
 
+
+
+
 }
+

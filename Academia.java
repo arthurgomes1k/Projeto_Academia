@@ -1,5 +1,4 @@
-package projeto_academia_002;
-
+package Aplicativo_Java;
 
 import java.util.ArrayList;
 
@@ -59,5 +58,5 @@ public class Academia {
         return treinos;
     }
 
-
+    
 }

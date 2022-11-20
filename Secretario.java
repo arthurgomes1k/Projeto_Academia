@@ -1,4 +1,4 @@
-package projeto_academia_002;
+package Aplicativo_Java;
 public class Secretario {
 
     private String horario;
@@ -10,6 +10,6 @@ public class Secretario {
     public String getHorario() {
         return horario;
     }
-
-
+    
+    
 }

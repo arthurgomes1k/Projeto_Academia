@@ -1,4 +1,4 @@
-package projeto_academia_002;
+package Aplicativo_Java;
 
 public class Administrador extends Usuario {
 
@@ -23,9 +23,9 @@ public class Administrador extends Usuario {
     }
 
     public void realizarRegistro() {
-
+        
     }
-
+    
     @Override
     public void realizarLogin(){
 
@@ -36,8 +36,12 @@ public class Administrador extends Usuario {
     }
 
     public void registrarFuncionario(String nome){
-        academia.funcionarios.add(nome);
+        academia.funcionarios.add(nome);   
 
+    }
+
+    public void acessarPersonais(){
+        
     }
 
     public void removerFuncionario(String nome){
@@ -45,11 +49,11 @@ public class Administrador extends Usuario {
             if (academia.funcionarios.get(funcionario).equals(nome)){
                 academia.funcionarios.remove(funcionario);
                 System.out.println("Funcionario " + nome + " Removido");
-            }
+            }    
         }
     }
 
-    public void registrarCliente(String nome) {
+    public void registrarCliente(String nome) {  
         academia.clientes.add(nome);
 
     }
@@ -60,20 +64,20 @@ public class Administrador extends Usuario {
                 academia.clientes.remove(cliente);
                 System.out.println("Cliente " + nome + " Removido");
             }
-
+            
         }
-
+        
     }
 
     public void acessarRelatorioAcademia() {
-
+        
     }
 
     @Override
     public void acessarPerfil() {
-
+        
     }
-
+    
     public void acessarClientes() {
         System.out.println(academia.clientes);
 
@@ -95,14 +99,20 @@ public class Administrador extends Usuario {
 
     }
 
-    public void adicionarTreinos(){
+    public void adicionarTreinos(String treino){
+        academia.treinos.add(treino);
 
     }
 
     @Override
     public void acessarTreinos(){
-
+        if(acamedia.treinos.size() == 0) {
+            System.out.println("Lista de treinos vazia!");
+        } else {
+            System.out.println(academia.treinos);
+        }
     }
+
 
     public void removerTreinos(){
 
