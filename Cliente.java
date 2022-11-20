@@ -1,4 +1,4 @@
-package Aplicativo_Java;
+package Projeto_Academia;
 
 import java.util.ArrayList;
 
