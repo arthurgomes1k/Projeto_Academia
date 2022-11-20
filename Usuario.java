@@ -1,4 +1,4 @@
-package projeto_academia_002;
+package Aplicativo_Java;
 
 public class Usuario {
 
@@ -49,11 +49,11 @@ public class Usuario {
     }
 
     public void realizarLogin() {
-
+        
     }
 
     public void acessarPerfil() {
-
+        
     }
 
     public void acessarTreinos(){
@@ -61,7 +61,7 @@ public class Usuario {
     }
 
     public void acessarPersonais(){
-
+        
     }
-
+    
 }
