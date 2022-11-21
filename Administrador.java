@@ -1,4 +1,4 @@
-package Aplicativo_Java;
+package Projeto_Academia;
 
 public class Administrador extends Usuario {
 
@@ -6,23 +6,7 @@ public class Administrador extends Usuario {
     private Planos plano;
 
 
-    public void setAcademia(Academia academia) {
-        this.academia = academia;
-    }
-
-    public Academia getAcademia() {
-        return academia;
-    }
-
-    public void setPlano(Planos plano) {
-        this.plano = plano;
-    }
-
-    public Planos getPlano() {
-        return plano;
-    }
-
-    public void realizarRegistro(String nome, String senha, String acesso, String email, Stirng numero_contato) {
+    public void realizarRegistro(String nome, String senha, String acesso, String email, String numero_contato) {
         this.nome = nome;
         this.senha = senha;
         this.acesso = acesso;
@@ -40,16 +24,13 @@ public class Administrador extends Usuario {
             correto = true;
         }
     }
-    
-    @Override
-    public void realizarLogin(String nome, String senha){
-        do{
-            verificarLogin(nome, senha);
-        }while(correto == false);
-        if(correto == true;){
-            System.out.println("Você está logado");
-            System.out.println("Bem vindo à OxyGym");
-        }          
+
+    public void realizarLogin(String email, String senha){
+        while (!getOnline()) {
+            verificarLogin(email, senha);
+        }
+        System.out.println("Você está logado");
+        System.out.println("Bem vindo à OxyGym");
 
     }
 
@@ -128,13 +109,12 @@ public class Administrador extends Usuario {
 
     @Override
     public void acessarTreinos(){
-        if(acamedia.treinos.size() == 0){
+        if(academia.treinos.size() == 0) {
             System.out.println("Lista de treinos vazia!");
-        else{
+        } else {
             System.out.println(academia.treinos);
         }
-        }
-        
+
     }
 
     public void removerTreinos(){
@@ -145,5 +125,22 @@ public class Administrador extends Usuario {
 
     }
 
+    //Sets e Gets Padrões
+
+    public void setAcademia(Academia academia) {
+        this.academia = academia;
+    }
+
+    public Academia getAcademia() {
+        return academia;
+    }
+
+    public void setPlano(Planos plano) {
+        this.plano = plano;
+    }
+
+    public Planos getPlano() {
+        return plano;
+    }
 
 }

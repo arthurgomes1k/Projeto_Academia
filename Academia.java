@@ -1,4 +1,4 @@
-package Aplicativo_Java;
+package Projeto_Academia;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,11 @@ public class Academia {
     ArrayList<String> funcionarios = new ArrayList();
     ArrayList<String> inadimplentes = new ArrayList();
     ArrayList<String> treinos = new ArrayList();
+
+
+
+
+    //Sets e Gets Padrões
 
     public void setNome_da_academia(String nome_da_academia) {
         this.nome_da_academia = nome_da_academia;
@@ -54,9 +59,9 @@ public class Academia {
     public void setTreinos(ArrayList<String> treinos) {
         this.treinos = treinos;
     }
+
     public ArrayList<String> getTreinos() {
         return treinos;
     }
 
-    
 }

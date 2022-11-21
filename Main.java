@@ -1,8 +1,8 @@
-package Aplicativo_Java;
+package Projeto_Academia;
 
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) {   
 
@@ -10,15 +10,15 @@ public class main {
         Administrador dono = new Administrador();
         Academia oxygym = new Academia();
         Personal_trainer arthur = new Personal_trainer();
-        Cliente pablo = new cliente();
-        Avaliacao avpablo = new Avaliacao()
+        Cliente pablo = new Cliente();
+        Avaliacao avpablo = new Avaliacao();
 
 
         arthur.setNome("Arthur");
         arthur.setSenha("123");
         arthur.setAcesso("Funcionario");
         arthur.setEmail("a@gmail.com");
-        arhut.setNumero_contato("(12)3456-7890")
+        arthur.setNumero_contato("(12)3456-7890");
         arthur.setHorario_inicio("14:00");
         arthur.setHorario_saida("18:00");
         
@@ -38,7 +38,7 @@ public class main {
         
         dono.realizarRegistro("Arthur", "1234", "Administrador", "adm@gmail.com", "(12)1234-1234");
 
-        
+        dono.realizarLogin("adm@gmail.com", "1234");
 
     }
     

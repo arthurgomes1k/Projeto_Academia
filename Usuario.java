@@ -1,4 +1,4 @@
-package Aplicativo_Java;
+package Projeto_Academia;
 
 public class Usuario {
 
@@ -7,7 +7,31 @@ public class Usuario {
     protected String acesso;
     protected String email;
     protected String numero_contato;
+    protected boolean online = false;
 
+    public void verificarLogin(String email, String senha){
+        if (getEmail().equals(email) && getSenha().equals(senha)) {
+            setOnline(true);
+            System.out.println("login realizado com sucesso!");
+        } else {
+            setOnline(false);
+            System.out.println("E-mail ou senha incorretos!");
+        }
+    }
+
+    public void acessarPerfil() {
+        
+    }
+
+    public void acessarTreinos(){
+
+    }
+
+    public void acessarPersonais(){
+        
+    }
+
+    //Sets e Gets Padrões
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -48,24 +72,11 @@ public class Usuario {
         this.numero_contato = numero_contato;
     }
 
-    public void realizarLogin() {
-        
+    public boolean getOnline() {
+        return online;
     }
 
-    public void verificarLogin(){
-        
+    public void setOnline(boolean online) {
+        this.online = online;
     }
-
-    public void acessarPerfil() {
-        
-    }
-
-    public void acessarTreinos(){
-
-    }
-
-    public void acessarPersonais(){
-        
-    }
-    
 }

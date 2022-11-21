@@ -1,4 +1,4 @@
-package Aplicativo_Java;
+package Projeto_Academia;
 
 import java.util.ArrayList;
 
@@ -9,30 +9,6 @@ public class Cliente extends Usuario {
     ArrayList<String> avaliacoes = new ArrayList();
 
 
-    public void setDados(Avaliacao dados) {
-        this.dados = dados;
-    }
-
-    public Avaliacao getDados() {
-        return dados;
-    }
-
-    public void setData_de_vencimento(int data_de_vencimento) {
-        this.data_de_vencimento = data_de_vencimento;
-    }
-    
-    public int getData_de_vencimento() {
-        return data_de_vencimento;
-    }
-
-    public void setAvaliacoes(ArrayList<String> avaliacoes) {
-        this.avaliacoes = avaliacoes;
-    }
-
-    public ArrayList<String> getAvaliacoes() {
-        return avaliacoes;
-    }
-
     public void realizarLogin() {
         
     }
@@ -42,10 +18,6 @@ public class Cliente extends Usuario {
     }
 
     public void acessarTreinos() {
-        if(listaDeTreinos.size() == 0){
-            System.out.println("Lista Vazia");
-          }
-          System.out.println(listaDeTreinos);
     }
 
     public void acessarTesteCliente(){
@@ -60,10 +32,30 @@ public class Cliente extends Usuario {
 
     }
 
+    //Sets e Gets Padrões
 
-    
+    public void setDados(Avaliacao dados) {
+        this.dados = dados;
+    }
 
+    public Avaliacao getDados() {
+        return dados;
+    }
 
-    
-    
+    public void setData_de_vencimento(int data_de_vencimento) {
+        this.data_de_vencimento = data_de_vencimento;
+    }
+
+    public int getData_de_vencimento() {
+        return data_de_vencimento;
+    }
+
+    public void setAvaliacoes(ArrayList<String> avaliacoes) {
+        this.avaliacoes = avaliacoes;
+    }
+
+    public ArrayList<String> getAvaliacoes() {
+        return avaliacoes;
+    }
+
 }

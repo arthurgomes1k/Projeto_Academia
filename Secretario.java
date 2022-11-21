@@ -1,4 +1,5 @@
-package Aplicativo_Java;
+package Projeto_Academia;
+
 public class Secretario {
 
     private String horario;
