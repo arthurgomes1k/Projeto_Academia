@@ -30,10 +30,7 @@ public class Personal_trainer extends Usuario{
     }
 
     public void acessarTreinos() {
-        if(get == 0){
-            System.out.println("Lista Vazia");
-          }
-          System.out.println(listaDeTreinos);
+
     }
 
     public void acessarPersonais() {

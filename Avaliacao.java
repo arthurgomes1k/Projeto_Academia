@@ -2,7 +2,7 @@ package Projeto_Academia;
 
 public class Avaliacao {
 
-    private Cliente nome;
+    private Cliente cliente;
     private String sexo;
     private double peso;
     private double altura;
@@ -27,7 +27,7 @@ public class Avaliacao {
             else if(getIdade() > 60){
                 taxa_metabolica_basal = 10.5 * getPeso() + 596;
             }
-        if(getSexo() == "Homem"){
+        if(getSexo().equals("Homem")){
             if(getIdade() > 10 && getIdade() < 18){
                 taxa_metabolica_basal = 17.5 * getPeso() + 651;
             }
@@ -47,11 +47,11 @@ public class Avaliacao {
     //Sets e Gets Padrões
 
     public Cliente getNome() {
-        return nome;
+        return cliente;
     }
 
     public void setNome(Cliente nome) {
-        this.nome = nome;
+        this.cliente = nome;
     }
 
     public void setSexo(String sexo) {

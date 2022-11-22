@@ -15,23 +15,8 @@ public class Administrador extends Usuario {
         
     }
 
-    public void verificarLogin(String nome, String senha){
-        boolean correto = false;
-        if(nome != getNome() || senha != getSenha()){
-            System.out.println("Nome de usuario ou senha incorreta");
-        }
-        else{
-            correto = true;
-        }
-    }
-
     public void realizarLogin(String email, String senha){
-        while (!getOnline()) {
-            verificarLogin(email, senha);
-        }
-        System.out.println("Você está logado");
-        System.out.println("Bem vindo à OxyGym");
-
+        verificarLogin(email, senha);
     }
 
     public void assinarPlano() {
