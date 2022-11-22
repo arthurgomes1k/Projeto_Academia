@@ -6,6 +6,7 @@ public class Academia {
 
     private String nome_da_academia;
     private Administrador administrador;
+    private Financeiro financeiro;
     ArrayList<String> clientes = new ArrayList();
     ArrayList<String> funcionarios = new ArrayList();
     ArrayList<String> inadimplentes = new ArrayList();

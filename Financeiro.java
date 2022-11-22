@@ -2,7 +2,7 @@ package Projeto_Academia;
 
 public class Financeiro {
 
-    private Administrador dono;
+    private Academia academia;
     private double receita;
     private double despesas;
 
