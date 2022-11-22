@@ -9,8 +9,8 @@ public class Cliente extends Usuario {
     ArrayList<String> avaliacoes = new ArrayList();
 
 
-    public void realizarLogin() {
-        
+    public void realizarLogin(String email, String senha) {
+        verificarLogin(email, senha);
     }
 
     public void acessarPerfil(){

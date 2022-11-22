@@ -38,7 +38,14 @@ public class Main {
         
         dono.realizarRegistro("Arthur", "1234", "Administrador", "adm@gmail.com", "(12)1234-1234");
 
-        dono.realizarLogin("adm@gmail.com", "1234");
+        while (!pablo.online) {
+            System.out.print("Digite seu email: ");
+            String email = input.nextLine();
+            System.out.print("Digite sua senha: ");
+            String senha = input.nextLine();
+            pablo.realizarLogin(email, senha);
+        }
+
 
     }
     
