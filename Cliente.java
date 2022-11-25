@@ -7,6 +7,7 @@ public class Cliente extends Usuario {
     private Avaliacao dados;
     private int data_de_vencimento;
     ArrayList<String> avaliacoes = new ArrayList();
+    private Treino treino_aluno;
 
 
     public void realizarLogin(String email, String senha) {
@@ -56,6 +57,14 @@ public class Cliente extends Usuario {
 
     public ArrayList<String> getAvaliacoes() {
         return avaliacoes;
+    }
+
+    public void setTreino_aluno(Treino treino_aluno) {
+        this.treino_aluno = treino_aluno;
+    }
+
+    public Treino getTreino_aluno() {
+        return treino_aluno;
     }
 
 }

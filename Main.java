@@ -36,6 +36,11 @@ public class Main {
         pablo.setEmail("p@gmail.com");
         pablo.setDados(avpablo);
         
+
+        arthur.criar_lista_treinos(pablo);
+        arthur.adicionarTreino(pablo, "supino");
+        System.out.println(pablo.getTreino_aluno().getListaDeTreinos());
+
         dono.realizarRegistro("Arthur", "1234", "Administrador", "adm@gmail.com", "(12)1234-1234");
 
         while (!pablo.online) {
@@ -45,6 +50,8 @@ public class Main {
             String senha = input.nextLine();
             pablo.realizarLogin(email, senha);
         }
+
+
 
 
     }

@@ -8,7 +8,8 @@ public class Academia {
     private Administrador administrador;
     private Financeiro financeiro;
     ArrayList<String> clientes = new ArrayList();
-    ArrayList<String> funcionarios = new ArrayList();
+    ArrayList<String> personais = new ArrayList();
+    ArrayList<String> secretarios = new ArrayList();
     ArrayList<String> inadimplentes = new ArrayList();
     ArrayList<String> treinos = new ArrayList();
 
@@ -37,16 +38,32 @@ public class Academia {
         return clientes;
     }
 
+    public void setPersonais(ArrayList<String> personais) {
+        this.personais = personais;
+    }
+
+    public ArrayList<String> getPersonais() {
+        return personais;
+    }
+
+    public void setSecretarios(ArrayList<String> secretarios) {
+        this.secretarios = secretarios;
+    }
+
+    public ArrayList<String> getSecretarios() {
+        return secretarios;
+    }
+
+    public void setFinanceiro(Financeiro financeiro) {
+        this.financeiro = financeiro;
+    }
+
+    public Financeiro getFinanceiro() {
+        return financeiro;
+    }
+
     public void setClientes(ArrayList<String> clientes) {
         this.clientes = clientes;
-    }
-
-    public ArrayList<String> getFuncionarios() {
-        return funcionarios;
-    }
-
-    public void setFuncionarios(ArrayList<String> funcionarios) {
-        this.funcionarios = funcionarios;
     }
 
     public void setInadimplentes(ArrayList<String> inadimplentes) {

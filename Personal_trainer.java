@@ -4,6 +4,7 @@ public class Personal_trainer extends Usuario{
 
     private String horario_inicio;
     private String horario_saida;
+    private Academia academia;
 
     public void realizarLogin() {
         
@@ -41,8 +42,16 @@ public class Personal_trainer extends Usuario{
         
     }
     
-    public void adicionarTreino(){
+    public void criar_lista_treinos(Cliente cliente) {
+        Treino treinos = new Treino();
+        treinos.setCliente(cliente);
+        cliente.setTreino_aluno(treinos);
+    }
 
+    public void adicionarTreino(Cliente cliente, String treino){  
+        cliente.getTreino_aluno().getListaDeTreinos().add(treino);
+        
+        
     }
 
     //Sets e Gets Padrões
@@ -60,6 +69,14 @@ public class Personal_trainer extends Usuario{
 
     public String getHorario_saida() {
         return horario_saida;
+    }
+
+    public void setAcademia(Academia academia) {
+        this.academia = academia;
+    }
+
+    public Academia getAcademia() {
+        return academia;
     }
 
 }

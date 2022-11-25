@@ -23,8 +23,7 @@ public class Administrador extends Usuario {
 
     }
 
-    public void registrarFuncionario(String nome){
-        academia.funcionarios.add(nome);   
+    public void registrarFuncionario(String nome){ 
 
     }
 
@@ -33,12 +32,7 @@ public class Administrador extends Usuario {
     }
 
     public void removerFuncionario(String nome){
-        for(int funcionario = 0; funcionario < academia.funcionarios.size(); funcionario++){
-            if (academia.funcionarios.get(funcionario).equals(nome)){
-                academia.funcionarios.remove(funcionario);
-                System.out.println("Funcionario " + nome + " Removido");
-            }    
-        }
+        
     }
 
     public void registrarCliente(String nome) {  

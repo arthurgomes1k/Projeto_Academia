@@ -3,6 +3,7 @@ package Projeto_Academia;
 import java.util.ArrayList;
 
 public class Treino{
+    
   ArrayList<String> listaDeTreinos = new ArrayList();
   
   private Usuario cliente;
