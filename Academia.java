@@ -6,7 +6,7 @@ public class Academia {
 
     private String nome_da_academia;
     private Administrador administrador;
-    private Plano plano;
+    private Planos plano;
     private Financeiro financeiro;
     ArrayList<Cliente> clientes = new ArrayList();
     ArrayList<Personal_trainer> personais = new ArrayList();
@@ -31,11 +31,11 @@ public class Academia {
         this.administrador = administrador;
     }
 
-    public void setPlano(Plano plano) {
+    public void setPlano(Planos plano) {
         this.plano = plano;
     }
 
-    public Plano getPlano() {
+    public Planos getPlano() {
         return plano;
     }
 

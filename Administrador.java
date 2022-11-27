@@ -1,36 +1,25 @@
 package Projeto_Academia;
 
-
-import java.util.Scanner;
-
 public class Administrador extends Usuario {
 
     private Academia academia;
     private Planos plano;
 
-    Scanner input = new Scanner(System.in)
-    
-    public void realizarRegistro(String nome, String senha, String email, String numero_contato) {
+
+    public void realizarRegistro(String nome, String senha, String acesso, String email, String numero_contato) {
         this.nome = nome;
         this.senha = senha;
-        this.acesso = "Administrador";
+        this.acesso = acesso;
         this.email = email;
         this.numero_contato = numero_contato;
         
     }
 
-    public void realizarLogin(){
-        while (online = false) {
-            System.out.print("Digite seu email: ");
-            String email = input.nextLine();
-            System.out.print("Digite sua senha: ");
-            String senha = input.nextLine();
-            verificarLogin(email, senha);
-        };
+    public void realizarLogin(String email, String senha){
+        verificarLogin(email, senha);
     }
 
     public void assinarPlano() {
-        
 
     }
 
@@ -49,7 +38,7 @@ public class Administrador extends Usuario {
                 personal.setAcesso("Funcionario");
                 personal.setEmail(email);
                 personal.setNumero_contato(numero_contato);
-                academia.getPersonais().add(personal)
+                academia.getPersonais().add(personal);
                 continuar = false;
             }
             if(escolha == "2"){
@@ -59,7 +48,7 @@ public class Administrador extends Usuario {
                 secretario.setAcesso("Funcionario");
                 secretario.setEmail(email);
                 secretario.setNumero_contato(numero_contato);
-                academia.getSecretarios().add(secretario)
+                academia.getSecretarios().add(secretario);
                 continuar = false;
             }
             else{
@@ -68,8 +57,6 @@ public class Administrador extends Usuario {
                 System.out.println("====== 2 -> Secretario ======");    
             }
         }
-        
-
     }
 
     public void acessarPersonais(){
@@ -80,19 +67,11 @@ public class Administrador extends Usuario {
         
     }
 
-    public void registrarCliente(String nome) {  
-        academia.clientes.add(nome);
+    public void registrarCliente(String nome) {    
 
     }
 
     public void removerCliente(String nome) {
-        for(int cliente = 0; cliente < academia.clientes.size(); cliente++){
-            if (academia.clientes.get(cliente).equals(nome)){
-                academia.clientes.remove(cliente);
-                System.out.println("Cliente " + nome + " Removido");
-            }
-            
-        }
         
     }
 
@@ -106,7 +85,6 @@ public class Administrador extends Usuario {
     }
     
     public void acessarClientes() {
-        System.out.println(academia.clientes);
 
     }
 
@@ -127,17 +105,11 @@ public class Administrador extends Usuario {
     }
 
     public void adicionarTreinos(String treino){
-        academia.treinos.add(treino);
 
     }
 
     @Override
     public void acessarTreinos(){
-        if(academia.treinos.size() == 0) {
-            System.out.println("Lista de treinos vazia!");
-        } else {
-            System.out.println(academia.treinos);
-        }
 
     }
 
