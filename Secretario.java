@@ -1,6 +1,6 @@
 package Projeto_Academia;
 
-public class Secretario {
+public class Secretario extends Usuario{
 
     private String horario;
 

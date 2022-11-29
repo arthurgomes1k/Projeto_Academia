@@ -11,14 +11,9 @@ public class Main {
         Academia oxygym = new Academia();
 
         dono.realizarRegistro("Arthur", "1234", "Administrador", "adm@gmail.com", "(12)1234-1234");
+        dono.registrarFuncionario("Raniere", "12345", "raniere@gmail.com", "99999-9999");
 
-        while (!dono.online) {
-            System.out.print("Digite seu email: ");
-            String email = input.nextLine();
-            System.out.print("Digite sua senha: ");
-            String senha = input.nextLine();
-            pablo.realizarLogin(email, senha);
-        }
+
     }
 
 }

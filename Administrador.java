@@ -1,10 +1,12 @@
 package Projeto_Academia;
+import java.util.Scanner;
 
 public class Administrador extends Usuario {
 
     private Academia academia;
     private Planos plano;
 
+    Scanner input = new Scanner(System.in);
 
     public void realizarRegistro(String nome, String senha, String acesso, String email, String numero_contato) {
         this.nome = nome;
@@ -28,10 +30,11 @@ public class Administrador extends Usuario {
         System.out.println("====== 1 -> Personal Trainer ======");
         System.out.println("====== 2 -> Secretario ======");
         boolean continuar = true;
-        while(continuar == true){
+        while(continuar){
             
             String escolha = input.nextLine();
-            if(escolha == "1"){
+        
+            if(escolha.equals("1")){
                 Personal_trainer personal = new Personal_trainer();
                 personal.setNome(nome);
                 personal.setSenha(senha);
@@ -41,7 +44,7 @@ public class Administrador extends Usuario {
                 academia.getPersonais().add(personal);
                 continuar = false;
             }
-            if(escolha == "2"){
+            if(escolha.equals("2")){
                 Secretario secretario = new Secretario();
                 secretario.setNome(nome);
                 secretario.setSenha(senha);
