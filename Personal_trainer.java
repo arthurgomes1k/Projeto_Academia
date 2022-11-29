@@ -1,4 +1,3 @@
-package Projeto_Academia;
 
 public class Personal_trainer extends Usuario{
 
