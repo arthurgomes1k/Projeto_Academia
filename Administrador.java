@@ -198,7 +198,7 @@ public class Administrador extends Usuario {
         System.out.println("Nome: " + getNome());
         System.out.println("Email: " + getEmail());
         System.out.println("Contato: " + getNumero_contato());
-        System.out.println("Acesso: "getAcesso());
+        System.out.println("Acesso: " + getAcesso());
     }
     
 
@@ -207,17 +207,59 @@ public class Administrador extends Usuario {
         String nome = input.nextLine();
         for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
             if(academia.getClientes().get(cliente).nome.equals(nome)){
-                System.out.println("Nome: " + academia.getCliente().get(cliente).getNome());
-                System.out.println("Email: " + academia.getCliente().get(cliente).getEmail());
-                System.out.println("Contato: " + academia.getCliente().get(cliente).getNumero_contato());
-                System.out.println("Acesso: " + academia.getCliente().get(cliente).getAcesso());
-                System.out.println("Data de vencimento: " + academia.getCliente.get(cliente).getData_de_vencimento());
+                System.out.println("Nome: " + academia.getClientes().get(cliente).getNome());
+                System.out.println("Email: " + academia.getClientes().get(cliente).getEmail());
+                System.out.println("Contato: " + academia.getClientes().get(cliente).getNumero_contato());
+                System.out.println("Acesso: " + academia.getClientes().get(cliente).getAcesso());
+                System.out.println("Data de vencimento: " + academia.getClientes().get(cliente).getData_de_vencimento());
             }         
         }
     }
 
     public void acessarPerfilFuncionario() {
+        System.out.println("====== Qual será a função do funcionário no sistema ======");
+        System.out.println("====== 1 -> Personal Trainer ======");
+        System.out.println("====== 2 -> Secretario ======");
         
+        while(true){
+            String escolha = input.nextLine();
+            if(escolha.equals("1")){
+                System.out.println(" Digite o nome do Personal Trainer");
+                String nome = input.nextLine();
+                    for(int personal = 0; personal < academia.getPersonais().size(); personal++){
+                        if(academia.getPersonais().get(personal).nome.equals(nome)){
+                            System.out.println("Nome: " + academia.getPersonais().get(personal).getNome());
+                            System.out.println("Email: " + academia.getPersonais().get(personal).getEmail());
+                            System.out.println("Contato: " + academia.getPersonais().get(personal).getNumero_contato());
+                            System.out.println("Acesso: " + academia.getPersonais().get(personal).getAcesso()); 
+                            System.out.println("Horario de atividade: " + academia.getPersonais().get(personal).getHorario_inicio() + "até " + academia.getPersonais().get(personal).getHorario_saida());
+                break;
+                        }
+
+                    }
+            }
+
+            if(escolha.equals("2")){
+                System.out.println(" Digite o nome do Secretário");
+                String nome = input.nextLine();
+                    for(int secretario = 0; secretario < academia.getSecretarios().size(); secretario++){
+                        if(academia.getSecretarios().get(secretario).nome.equals(nome)){
+                            System.out.println("Nome: " + academia.getSecretarios().get(secretario).getNome());
+                            System.out.println("Email: " + academia.getSecretarios().get(secretario).getEmail());
+                            System.out.println("Contato: " + academia.getSecretarios().get(secretario).getNumero_contato());
+                            System.out.println("Acesso: " + academia.getSecretarios().get(secretario).getAcesso()); 
+                            System.out.println("Horario de atividade: " + academia.getSecretarios().get(secretario).getHorario_inicio() + "até " + academia.getSecretarios().get(secretario).getHorario_saida());
+                break;
+                        }
+
+                    }
+            }
+            else{
+                System.out.println("====== Qual será a função do funcionário no sistema ======");
+                System.out.println("====== 1 -> Personal Trainer ======");
+                System.out.println("====== 2 -> Secretario ======");
+            }  
+        }
     }
 
     public void acessarTesteCliente(){
