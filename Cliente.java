@@ -1,5 +1,4 @@
 package Projeto_Academia;
-
 import java.util.ArrayList;
 
 public class Cliente extends Usuario { 
@@ -21,7 +20,7 @@ public class Cliente extends Usuario {
     public void acessarTreinos() {
     }
 
-    public void acessarTesteCliente(){
+    public void acessarAvaliaçãoCliente(){
 
     }
 

@@ -1,5 +1,7 @@
 package Projeto_Academia;
 
+import java.util.Scanner;
+
 public class Avaliacao {
 
     private Cliente cliente;
@@ -11,10 +13,14 @@ public class Avaliacao {
     private double gordura_corporal;
     private double taxa_metabolica_basal = 0;
     private String objetivo;
+    private String data_avaliacao;
 
+    Scanner input = new Scanner(System.in);
 
-    public void setGordura_corporal(double gordura_corporal) {
+    public void setGordura_corporal(double gordura_corporal) { 
+
         if(getSexo().equals("Mulher")){
+             
             if(getIdade() > 10 && getIdade() < 18){
                 taxa_metabolica_basal = 12.2 * getPeso() + 746;
             }
@@ -45,7 +51,12 @@ public class Avaliacao {
     }
 
     //Sets e Gets Padrões
-
+    public void setData_avaliacao(String data_avaliacao) {
+        this.data_avaliacao = data_avaliacao;
+    }
+    public String getData_avaliacao() {
+        return data_avaliacao;
+    }
     public Cliente getNome() {
         return cliente;
     }

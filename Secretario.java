@@ -1,15 +1,34 @@
 package Projeto_Academia;
 
-public class Secretario extends Usuario{
+public class Secretario extends Usuario {
 
-    private String horario;
+    private String horario_inicio;
+    private String horario_saida;
+    private Academia academia;
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+
+    public void setAcademia(Academia academia) {
+        this.academia = academia;
+    }
+    
+    public Academia getAcademia() {
+        return academia;
     }
 
-    public String getHorario() {
-        return horario;
+    public void setHorario_inicio(String horario_inicio) {
+        this.horario_inicio = horario_inicio;
+    }
+
+    public String getHorario_inicio() {
+        return horario_inicio;
+    }
+
+    public void setHorario_saida(String horario_saida) {
+        this.horario_saida = horario_saida;
+    }
+
+    public String getHorario_saida() {
+        return horario_saida;
     }
     
     

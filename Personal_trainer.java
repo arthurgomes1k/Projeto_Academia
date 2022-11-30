@@ -1,10 +1,15 @@
 package Projeto_Academia;
 
+import java.util.Scanner;
+
+
 public class Personal_trainer extends Usuario{
 
     private String horario_inicio;
     private String horario_saida;
     private Academia academia;
+
+    Scanner input = new Scanner(System.in);
 
     public void realizarLogin() {
         
@@ -52,6 +57,24 @@ public class Personal_trainer extends Usuario{
         cliente.getTreino_aluno().getListaDeTreinos().add(treino);
         
         
+    }
+    //NGM MEXE VOU TERMINAR AMANHA PQ TO COM SONO 
+    public void gerarAvaliacaoCliente(){
+        System.out.println("====== Digite as informações do cliente ======");
+        System.out.println("Nome: ");
+        String nome = input.nextLine();
+        System.out.println("Sexo: ");
+        String sexo = input.nextLine();
+        System.out.println("Peso:  ");
+        int peso = input.nextInt();
+        System.out.println("Altura: ");
+        int altura = input.nextInt();
+        System.out.println("Biotipo: ");
+        String biotipo = input.nextLine();
+        
+        for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
+            System.out.println(academia.getClientes().get(cliente).setDados(null));                  
+          }   
     }
 
     //Sets e Gets Padrões
