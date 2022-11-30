@@ -47,7 +47,7 @@ public class Administrador extends Usuario {
                   personal.setEmail(email);
                   personal.setNumero_contato(numero_contato);
                   personal.setSenha(senha);
-                  personal.setAcesso("Cliente");
+                  personal.setAcesso("Funcionario");
                   academia.getPersonais().add(personal);
                   break;
                 }
@@ -66,7 +66,7 @@ public class Administrador extends Usuario {
                   secretario.setEmail(email);
                   secretario.setNumero_contato(numero_contato);
                   secretario.setSenha(senha);
-                  secretario.setAcesso("Cliente");
+                  secretario.setAcesso("Funcionario");
                   academia.getSecretarios().add(secretario);
                   break;
               }
@@ -217,14 +217,15 @@ public class Administrador extends Usuario {
     }
 
     public void acessarPerfilFuncionario() {
-        System.out.println("====== Qual será a função do funcionário no sistema ======");
+        System.out.println("====== Perfil do funcionario ======");
+        System.out.println("====== Qual é a função do funcionário no sistema ======");
         System.out.println("====== 1 -> Personal Trainer ======");
         System.out.println("====== 2 -> Secretario ======");
         
         while(true){
             String escolha = input.nextLine();
             if(escolha.equals("1")){
-                System.out.println(" Digite o nome do Personal Trainer");
+                System.out.println(" Digite o nome do Personal Trainer: ");
                 String nome = input.nextLine();
                     for(int personal = 0; personal < academia.getPersonais().size(); personal++){
                         if(academia.getPersonais().get(personal).nome.equals(nome)){
@@ -233,10 +234,14 @@ public class Administrador extends Usuario {
                             System.out.println("Contato: " + academia.getPersonais().get(personal).getNumero_contato());
                             System.out.println("Acesso: " + academia.getPersonais().get(personal).getAcesso()); 
                             System.out.println("Horario de atividade: " + academia.getPersonais().get(personal).getHorario_inicio() + "até " + academia.getPersonais().get(personal).getHorario_saida());
-                break;
+                            break;          
+                        } else if (personal == (academia.getPersonais().size() - 1)) {
+                            System.out.println("Usuario não encontrado");
                         }
+                        
 
                     }
+                break;
             }
 
             if(escolha.equals("2")){
@@ -249,16 +254,21 @@ public class Administrador extends Usuario {
                             System.out.println("Contato: " + academia.getSecretarios().get(secretario).getNumero_contato());
                             System.out.println("Acesso: " + academia.getSecretarios().get(secretario).getAcesso()); 
                             System.out.println("Horario de atividade: " + academia.getSecretarios().get(secretario).getHorario_inicio() + "até " + academia.getSecretarios().get(secretario).getHorario_saida());
-                break;
-                        }
+                            break;
+                        }else if (secretario == (academia.getSecretarios().size() - 1)) {
+                            System.out.println("Usuario não encontrado");
 
+                        }
                     }
+                break;
             }
+
             else{
                 System.out.println("====== Qual será a função do funcionário no sistema ======");
                 System.out.println("====== 1 -> Personal Trainer ======");
                 System.out.println("====== 2 -> Secretario ======");
             }  
+        
         }
     }
 

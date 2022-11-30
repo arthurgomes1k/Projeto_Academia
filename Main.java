@@ -13,10 +13,10 @@ public class Main {
     dono.realizarRegistro("Arthur", "1234", "adm@gmail.com", "(12)1234-1234");
 
     dono.registrarFuncionario();
-    dono.acessarFuncionarios();
-    dono.removerFuncionario();
-    dono.acessarFuncionarios();
+    dono.acessarPerfilFuncionario();
 
+
+    
   }
 
 }

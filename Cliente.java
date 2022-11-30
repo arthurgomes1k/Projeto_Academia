@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Cliente extends Usuario { 
 
+    private Academia academia;
     private Avaliacao dados;
     private int data_de_vencimento;
     ArrayList<String> avaliacoes = new ArrayList();
@@ -34,6 +35,14 @@ public class Cliente extends Usuario {
 
     //Sets e Gets Padrões
 
+    public void setAcademia(Academia academia) {
+        this.academia = academia;
+    }
+
+    public Academia getAcademia() {
+        return academia;
+    }
+    
     public void setDados(Avaliacao dados) {
         this.dados = dados;
     }
