@@ -58,24 +58,39 @@ public class Personal_trainer extends Usuario{
         
         
     }
-    //NGM MEXE VOU TERMINAR AMANHA PQ TO COM SONO 
     public void gerarAvaliacaoCliente(){
-        System.out.println("====== Digite as informações do cliente ======");
+        System.out.println("====== Digite as informações do cliente");
+        System.out.println();
         System.out.println("Nome: ");
         String nome = input.nextLine();
         System.out.println("Sexo: ");
         String sexo = input.nextLine();
-        System.out.println("Peso:  ");
-        int peso = input.nextInt();
+        System.out.println("Peso: ");
+        double peso = input.nextDouble();
         System.out.println("Altura: ");
         int altura = input.nextInt();
+        System.out.println("Idade: ");
+        int idade = input.nextInt();
         System.out.println("Biotipo: ");
         String biotipo = input.nextLine();
-        
-        for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
-            System.out.println(academia.getClientes().get(cliente).setDados(null));                  
-          }   
+        System.out.println("Objetivo: ");
+        String objetivo = input.nextLine();
+        Avaliacao avaliacao = new Avaliacao();
+        avaliacao.setSexo(sexo);
+        avaliacao.setPeso(peso);
+        avaliacao.setAltura(altura);
+        avaliacao.setIdade(idade);
+        avaliacao.setBiotipo(biotipo);
+        avaliacao.setObjetivo(objetivo);
+        for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
+            if(academia.getClientes().get(cliente).nome.equals(nome)){
+                academia.getClientes().get(cliente).setDados(avaliacao);
+                avaliacao.setNome(academia.getClientes().get(cliente));
+                academia.getClientes().get(cliente).getAvaliacoes().add(avaliacao);
+            }
+        }
     }
+
 
     //Sets e Gets Padrões
     public void setHorario_inicio(String horario_inicio) {

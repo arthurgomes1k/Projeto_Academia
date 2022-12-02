@@ -16,13 +16,8 @@ public class Main {
     dono.realizarLogin("raniere@gmail.com", "123");
 
     dono.registrarCliente();
-    dono.registrarCliente();
-    dono.registrarCliente();
-    dono.registrarCliente();
-    dono.registrarCliente();
-    dono.registrarCliente();
     dono.acessarClientes();
-    
+    dono.acessarPerfil();
   }
-
 }
+

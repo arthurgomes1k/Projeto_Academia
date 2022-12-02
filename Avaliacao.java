@@ -1,6 +1,5 @@
 package Projeto_Academia;
 
-import java.util.Scanner;
 
 public class Avaliacao {
 
@@ -14,63 +13,79 @@ public class Avaliacao {
     private double taxa_metabolica_basal = 0;
     private String objetivo;
     private String data_avaliacao;
+    private double gasto_calorico;
+    private double calorias;
+    private double massaCorporal;
 
-    Scanner input = new Scanner(System.in);
+    public void setMassaCorporal() {
+        double imc = getPeso()/(getAltura()*getAltura());
+    }
 
-    public void setGordura_corporal(double gordura_corporal) { 
+    public void setTaxa_metabolica_basal(double calorias) { 
 
         if(getSexo().equals("Mulher")){
              
             if(getIdade() > 10 && getIdade() < 18){
-                taxa_metabolica_basal = 12.2 * getPeso() + 746;
+                taxa_metabolica_basal = 13.384 * getPeso() + 692.6;
             }
             else if(getIdade() > 18 && getIdade() < 30){
-                taxa_metabolica_basal = 14.7 * getPeso() + 496;
+                taxa_metabolica_basal = 14.818 * getPeso() + 486.6;
             }
             else if(getIdade() > 30 && getIdade() < 60){
-                taxa_metabolica_basal = 8.7 * getPeso() + 829;
+                taxa_metabolica_basal = 8.126 * getPeso() + 845.6;
             }
             else if(getIdade() > 60){
-                taxa_metabolica_basal = 10.5 * getPeso() + 596;
+                taxa_metabolica_basal = 9.082 * getPeso() + 658.5;
             }
+            
         if(getSexo().equals("Homem")){
             if(getIdade() > 10 && getIdade() < 18){
-                taxa_metabolica_basal = 17.5 * getPeso() + 651;
+                taxa_metabolica_basal = 17.686 * getPeso() + 658.2;
             }
             else if(getIdade() > 18 && getIdade() < 30){
-                taxa_metabolica_basal = 15.3 * getPeso() + 679;
+                taxa_metabolica_basal = 15.057 * getPeso() + 692.2;
             }
             else if(getIdade() > 30 && getIdade() < 60){
-                taxa_metabolica_basal = 11.6 * getPeso() + 879;
+                taxa_metabolica_basal = 11.472 * getPeso() + 873.1;
             }
             else if(getIdade() > 60){
-                taxa_metabolica_basal = 13.5 * getPeso() + 487;
+                taxa_metabolica_basal = 11.711 * getPeso() + 587.7;
             }
         }
     }
     }
 
     //Sets e Gets Padrões
-    public void setData_avaliacao(String data_avaliacao) {
-        this.data_avaliacao = data_avaliacao;
+    public double getMassaCorporal() {
+        return massaCorporal;
     }
-    public String getData_avaliacao() {
-        return data_avaliacao;
+    public double getGasto_calorico() {
+        return gasto_calorico;
+
     }
-    public Cliente getNome() {
+    public void setGasto_calorico(double gasto_calorico) {
+        this.gasto_calorico = gasto_calorico;
+    }
+    public void setCalorias(double calorias) {
+        this.calorias = calorias;
+    }
+    public double getCalorias() {
+        return calorias;
+    }
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setNome(Cliente nome) {
-        this.cliente = nome;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getSexo() {
         return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public double getPeso() {
@@ -109,12 +124,8 @@ public class Avaliacao {
         return gordura_corporal;
     }
 
-    public double getTaxa_metabolica_basal() {
-        return taxa_metabolica_basal;
-    }
-
-    public void setTaxa_metabolica_basal(double taxa_metabolica_basal) {
-        this.taxa_metabolica_basal = taxa_metabolica_basal;
+    public void setGordura_corporal(double gordura_corporal) {
+        this.gordura_corporal = gordura_corporal;
     }
 
     public String getObjetivo() {
@@ -123,6 +134,17 @@ public class Avaliacao {
 
     public void setObjetivo(String objetivo) {
         this.objetivo = objetivo;
+    }
+
+    public String getData_avaliacao() {
+        return data_avaliacao;
+    }
+
+    public void setData_avaliacao(String data_avaliacao) {
+        this.data_avaliacao = data_avaliacao;
+    }
+    public double getTaxa_metabolica_basal() {
+        return taxa_metabolica_basal;
     }
 
 }
