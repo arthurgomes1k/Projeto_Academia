@@ -85,7 +85,7 @@ public class Personal_trainer extends Usuario{
         for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
             if(academia.getClientes().get(cliente).nome.equals(nome)){
                 academia.getClientes().get(cliente).setDados(avaliacao);
-                avaliacao.setNome(academia.getClientes().get(cliente));
+                avaliacao.setCliente(academia.getClientes().get(cliente));
                 academia.getClientes().get(cliente).getAvaliacoes().add(avaliacao);
             }
         }

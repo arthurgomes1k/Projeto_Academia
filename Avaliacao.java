@@ -9,47 +9,44 @@ public class Avaliacao {
     private double altura;
     private int idade;
     private String biotipo;
-    private double gordura_corporal;
     private double taxa_metabolica_basal = 0;
     private String objetivo;
     private String data_avaliacao;
-    private double gasto_calorico;
-    private double calorias;
-    private double massaCorporal;
+    private double massaCorporal = 0;
 
     public void setMassaCorporal() {
-        double imc = getPeso()/(getAltura()*getAltura());
+       this.massaCorporal = getPeso()/(getAltura()*getAltura());
     }
 
-    public void setTaxa_metabolica_basal(double calorias) { 
+    public void setTaxa_metabolica_basal() { 
 
         if(getSexo().equals("Mulher")){
              
             if(getIdade() > 10 && getIdade() < 18){
-                taxa_metabolica_basal = 13.384 * getPeso() + 692.6;
+               this.taxa_metabolica_basal = 13.384 * getPeso() + 692.6;
             }
             else if(getIdade() > 18 && getIdade() < 30){
-                taxa_metabolica_basal = 14.818 * getPeso() + 486.6;
+               this.taxa_metabolica_basal = 14.818 * getPeso() + 486.6;
             }
             else if(getIdade() > 30 && getIdade() < 60){
-                taxa_metabolica_basal = 8.126 * getPeso() + 845.6;
+               this.taxa_metabolica_basal = 8.126 * getPeso() + 845.6;
             }
             else if(getIdade() > 60){
-                taxa_metabolica_basal = 9.082 * getPeso() + 658.5;
+               this.taxa_metabolica_basal = 9.082 * getPeso() + 658.5;
             }
             
         if(getSexo().equals("Homem")){
             if(getIdade() > 10 && getIdade() < 18){
-                taxa_metabolica_basal = 17.686 * getPeso() + 658.2;
+               this.taxa_metabolica_basal = 17.686 * getPeso() + 658.2;
             }
             else if(getIdade() > 18 && getIdade() < 30){
-                taxa_metabolica_basal = 15.057 * getPeso() + 692.2;
+               this.taxa_metabolica_basal = 15.057 * getPeso() + 692.2;
             }
             else if(getIdade() > 30 && getIdade() < 60){
-                taxa_metabolica_basal = 11.472 * getPeso() + 873.1;
+               this.taxa_metabolica_basal = 11.472 * getPeso() + 873.1;
             }
             else if(getIdade() > 60){
-                taxa_metabolica_basal = 11.711 * getPeso() + 587.7;
+               this.taxa_metabolica_basal = 11.711 * getPeso() + 587.7;
             }
         }
     }
@@ -58,19 +55,6 @@ public class Avaliacao {
     //Sets e Gets Padrões
     public double getMassaCorporal() {
         return massaCorporal;
-    }
-    public double getGasto_calorico() {
-        return gasto_calorico;
-
-    }
-    public void setGasto_calorico(double gasto_calorico) {
-        this.gasto_calorico = gasto_calorico;
-    }
-    public void setCalorias(double calorias) {
-        this.calorias = calorias;
-    }
-    public double getCalorias() {
-        return calorias;
     }
     public Cliente getCliente() {
         return cliente;
@@ -118,14 +102,6 @@ public class Avaliacao {
 
     public void setBiotipo(String biotipo) {
         this.biotipo = biotipo;
-    }
-
-    public double getGordura_corporal() {
-        return gordura_corporal;
-    }
-
-    public void setGordura_corporal(double gordura_corporal) {
-        this.gordura_corporal = gordura_corporal;
     }
 
     public String getObjetivo() {

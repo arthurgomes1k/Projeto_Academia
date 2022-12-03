@@ -6,7 +6,7 @@ public class Cliente extends Usuario {
     private Academia academia;
     private Avaliacao dados;
     private int data_de_vencimento;
-    ArrayList<String> avaliacoes = new ArrayList();
+    ArrayList<Avaliacao> avaliacoes = new ArrayList();
     private Treino treino_aluno;
 
 
@@ -59,11 +59,11 @@ public class Cliente extends Usuario {
         return data_de_vencimento;
     }
 
-    public void setAvaliacoes(ArrayList<String> avaliacoes) {
+    public void setAvaliacoes(ArrayList<Avaliacao> avaliacoes) {
         this.avaliacoes = avaliacoes;
     }
 
-    public ArrayList<String> getAvaliacoes() {
+    public ArrayList<Avaliacao> getAvaliacoes() {
         return avaliacoes;
     }
 
