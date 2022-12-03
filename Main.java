@@ -8,7 +8,6 @@ public class Main {
     Scanner input = new Scanner(System.in);
     Administrador dono = new Administrador();
     Academia oxygym = new Academia();
-    
 
     dono.setAcademia(oxygym);
 
@@ -18,6 +17,7 @@ public class Main {
     dono.registrarCliente();
     dono.acessarClientes();
     dono.acessarPerfil();
+    
   }
 }
 

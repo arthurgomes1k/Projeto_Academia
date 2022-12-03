@@ -22,11 +22,19 @@ public class Cliente extends Usuario {
     }
 
     public void acessarAvaliaçãoCliente(){
-
+        System.out.println("Nome: "+dados.getCliente());
+        System.out.println("Idade: "+dados.getIdade());
+        System.out.println("Altura: "+dados.getAltura());
+        System.out.println("Peso: "+dados.getPeso()+"Kg");
+        System.out.println("Biotipo: "+dados.getBiotipo());
+        System.out.println("Imc: "+dados.getMassaCorporal());
+        System.out.println("Taxa metabólica: "+dados.getTaxa_metabolica_basal());
     }
 
     public void acessarHistoricoTestes(){
-
+        for(int avaliacoes = 0; avaliacoes <getAvaliacoes().size();avaliacoes++){
+            System.out.println((avaliacoes +1)+"°"+" Avaliação: "+ getAvaliacoes().get(avaliacoes).getData_avaliacao());
+        }
     }
 
     public void relatorioCliente(){
