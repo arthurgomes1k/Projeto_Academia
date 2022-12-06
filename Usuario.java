@@ -1,4 +1,3 @@
-package Projeto_Academia;
 
 public class Usuario {
 
@@ -10,14 +9,16 @@ public class Usuario {
     protected boolean online = false;
 
     public void verificarLogin(String email, String senha){
-        if (getEmail().equals(email) && getSenha().equals(senha)) {
+        if(getEmail().equals(email) && getSenha().equals(senha)){
             setOnline(true);
-            System.out.println("login realizado com sucesso!");
-        } else {
+            System.out.println("Login realizado com sucesso!");
+            System.out.println();
+        }else {
             setOnline(false);
             System.out.println("E-mail ou senha incorretos!");
+            System.out.println();
         }
-    }
+    }        
 
     public void acessarPerfil() {
         

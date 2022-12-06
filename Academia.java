@@ -1,4 +1,3 @@
-package Projeto_Academia;
 
 import java.util.ArrayList;
 
@@ -6,15 +5,39 @@ public class Academia {
 
     private String nome_da_academia;
     private Administrador administrador;
-    private Planos plano;
+    ArrayList<Plano> planos = new ArrayList();
     private Financeiro financeiro;
     ArrayList<Cliente> clientes = new ArrayList();
     ArrayList<Personal_trainer> personais = new ArrayList();
     ArrayList<Secretario> secretarios = new ArrayList();
     ArrayList<Cliente> inadimplentes = new ArrayList();
-    ArrayList<String> treinos = new ArrayList();
+    ArrayList<String> treino_A = new ArrayList();
+    ArrayList<String> treino_B = new ArrayList();
+    ArrayList<String> treino_C = new ArrayList();
 
+    public void criarPlanos(){
+        Plano classic = new Plano();
+        classic.setNome_do_plano("Classic");
+        classic.setValor(100);
+        classic.setQuantidade_de_alunos(50);
+
+        Plano master = new Plano();
+        master.setNome_do_plano("Master");
+        master.setValor(200);
+        master.setQuantidade_de_alunos(100);
+
+        Plano muscle = new Plano();
+        muscle.setNome_do_plano("Muscle");
+        muscle.setValor(300);
+        muscle.setQuantidade_de_alunos(200);
+
+        planos.add(classic);
+        planos.add(master);
+        planos.add(muscle);
+    }
     
+    //Sets e Gets Padrões
+
     public String getNome_da_academia() {
         return nome_da_academia;
     }
@@ -31,12 +54,12 @@ public class Academia {
         this.administrador = administrador;
     }
 
-    public void setPlano(Planos plano) {
-        this.plano = plano;
+    public ArrayList<Plano> getPlanos() {
+        return planos;
     }
 
-    public Planos getPlano() {
-        return plano;
+    public void setPlanos(ArrayList<Plano> planos) {
+        this.planos = planos;
     }
 
     public Financeiro getFinanceiro() {
@@ -79,18 +102,34 @@ public class Academia {
         this.inadimplentes = inadimplentes;
     }
 
-    public ArrayList<String> getTreinos() {
-        return treinos;
+    public void setTreino_A(ArrayList<String> treino_A) {
+        this.treino_A = treino_A;
+    }
+    
+    public ArrayList<String> getTreino_A() {
+        return treino_A;
     }
 
-    public void setTreinos(ArrayList<String> treinos) {
-        this.treinos = treinos;
+    public void setTreino_B(ArrayList<String> treino_B) {
+        this.treino_B = treino_B;
+    }
+
+    public ArrayList<String> getTreino_B() {
+        return treino_B;
+    }
+
+    public void setTreino_C(ArrayList<String> treino_C) {
+        this.treino_C = treino_C;
+    }
+
+    public ArrayList<String> getTreino_C() {
+        return treino_C;
     }
 
 
 
 
-    //Sets e Gets Padrões
+    
 
     
 

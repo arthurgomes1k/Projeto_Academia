@@ -1,5 +1,3 @@
-package Projeto_Academia;
-
 public class Secretario extends Usuario {
 
     private String horario_inicio;
@@ -7,6 +5,12 @@ public class Secretario extends Usuario {
     private Academia academia;
 
 
+
+    public void realizarLogin(String email, String senha){
+        verificarLogin(email, senha);
+    }
+
+    
     public void setAcademia(Academia academia) {
         this.academia = academia;
     }

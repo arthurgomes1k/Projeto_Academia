@@ -1,30 +1,34 @@
-package Projeto_Academia;
 
 public class Financeiro {
 
-    private Administrador dono;
+    private Academia academia;
     private double receita;
     private double despesas;
-    
-    public Administrador getDono() {
-        return dono;
+
+
+    //Sets e Gets Padrões
+
+    public Academia getAcademia() {
+        return academia;
     }
-    public void setDono(Administrador dono) {
-        this.dono = dono;
+
+    public void setAcademia(Academia academia) {
+        this.academia = academia;
     }
+
     public double getReceita() {
         return receita;
     }
+
     public void setReceita(double receita) {
         this.receita = receita;
     }
+
     public double getDespesas() {
         return despesas;
     }
+
     public void setDespesas(double despesas) {
         this.despesas = despesas;
     }
-
-
 }
-
