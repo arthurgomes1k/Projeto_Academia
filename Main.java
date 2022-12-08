@@ -1,4 +1,3 @@
-package Projeto_Academia;
 import java.util.Scanner;
 
 public class Main {
@@ -7,9 +6,9 @@ public class Main {
 
     Scanner input = new Scanner(System.in);
     Administrador dono = new Administrador();
-
     Academia academia = new Academia();
     academia.criarPlanos();
+    
 
     while(true){
       System.out.println("====== TELA DE ACESSO ======");
@@ -118,8 +117,9 @@ public class Main {
               }
 
             }
+            break;
 
-          }
+        }
 
         //TELA DE LOGIN
         if(escolha.equals("2")){
@@ -205,13 +205,12 @@ public class Main {
         else{
             System.out.println("====== TELA DE ACESSO ======");
             System.out.println();
-            System.out.println(" -- DIGITE 1 PARA FAZER LOGIN --");
-            System.out.println(" -- DIGITE 2 PARA REALIZAR REGISTRO");
+            System.out.println(" -- DIGITE 1 PARA REALIZAR REGISTRO --");
+            System.out.println(" -- DIGITE 2 PARA FAZER LOGIN --");
             System.out.println();
         }
       }
     }
-
 
 
 

@@ -1,4 +1,4 @@
-package Projeto_Academia;
+
 public class Usuario {
 
     protected String nome;
@@ -15,7 +15,7 @@ public class Usuario {
             System.out.println();
         }else {
             setOnline(false);
-            System.out.println("E-mail ou senha incorretos!");
+            System.out.println("Senha incorreta!");
             System.out.println();
         }
     }        

@@ -1,4 +1,3 @@
-package Projeto_Academia;
 public class Avaliacao {
 
     private Cliente cliente;
@@ -32,8 +31,9 @@ public class Avaliacao {
             else if(getIdade() > 60){
                this.taxa_metabolica_basal = 9.082 * getPeso() + 658.5;
             }
+        }
             
-        if(getSexo().equals("Homem")){
+        else if(getSexo().equals("Homem")){
             if(getIdade() > 10 && getIdade() < 18){
                this.taxa_metabolica_basal = 17.686 * getPeso() + 658.2;
             }
@@ -48,7 +48,7 @@ public class Avaliacao {
             }
         }
     }
-    }
+
 
     //Sets e Gets Padrões
     public double getMassaCorporal() {

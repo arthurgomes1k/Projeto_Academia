@@ -1,4 +1,4 @@
-package Projeto_Academia;
+
 import java.util.ArrayList;
 
 public class Academia {
