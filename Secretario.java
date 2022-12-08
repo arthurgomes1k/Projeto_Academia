@@ -68,6 +68,12 @@ public class Secretario extends Usuario {
     }
 
     // set get 
+
+    public void realizarLogin(String email, String senha){
+        verificarLogin(email, senha);
+    }
+
+    
     public void setAcademia(Academia academia) {
         this.academia = academia;
     }

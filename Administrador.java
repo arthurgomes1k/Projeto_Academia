@@ -1,29 +1,26 @@
 package Projeto_Academia;
-
 import java.util.Scanner;
 
 public class Administrador extends Usuario {
 
+    private String cpf; 
     private Academia academia;
-    private Planos plano;
+    private Plano plano;
 
     Scanner input = new Scanner(System.in);
 
-    public void realizarRegistro(String nome, String senha, String email, String numero_contato) {
+    public void realizarRegistro(String nome, String cpf, String email, String numero_contato, String senha) {
         this.nome = nome;
-        this.senha = senha;
-        this.acesso = "Administrador";
+        this.cpf = cpf;
         this.email = email;
         this.numero_contato = numero_contato;
+        this.senha = senha;
+        this.acesso = "Administrador";
         
     }
 
     public void realizarLogin(String email, String senha){
         verificarLogin(email, senha);
-    }
-
-    public void assinarPlano() {
-
     }
 
     public void registrarFuncionario(){
@@ -32,17 +29,17 @@ public class Administrador extends Usuario {
           System.out.println("====== 2 -> Secretario ======");
           while(true){
                 
-              String escolha = input.nextLine();
+              String escolha = input.nextLine().toUpperCase();
               if(escolha.equals("1")){
                   System.out.println("====== Digite as informações do personal ======");
                   System.out.println("Nome: ");
-                  String nome = input.nextLine();
+                  String nome = input.nextLine().toUpperCase();
                   System.out.println("Email: ");
-                  String email = input.nextLine();
+                  String email = input.nextLine().toUpperCase();
                   System.out.println("Numero de contato: ");
-                  String numero_contato = input.nextLine();
+                  String numero_contato = input.nextLine().toUpperCase();
                   System.out.println("Senha: ");
-                  String senha = input.nextLine();
+                  String senha = input.nextLine().toUpperCase();
                   Personal_trainer personal = new Personal_trainer();
                   personal.setNome(nome);
                   personal.setEmail(email);
@@ -55,13 +52,13 @@ public class Administrador extends Usuario {
               if(escolha.equals("2")){
                   System.out.println("====== Digite as informações do secretario ======");
                   System.out.println("Nome: ");
-                  String nome = input.nextLine();
+                  String nome = input.nextLine().toUpperCase();
                   System.out.println("Email: ");
-                  String email = input.nextLine();
+                  String email = input.nextLine().toUpperCase();
                   System.out.println("Numero de contato: ");
-                  String numero_contato = input.nextLine();
+                  String numero_contato = input.nextLine().toUpperCase();
                   System.out.println("Senha: ");
-                  String senha = input.nextLine();
+                  String senha = input.nextLine().toUpperCase();
                   Secretario secretario = new Secretario();
                   secretario.setNome(nome);
                   secretario.setEmail(email);
@@ -87,7 +84,7 @@ public class Administrador extends Usuario {
 
         while(true){
             
-            String escolha = input.nextLine();
+            String escolha = input.nextLine().toUpperCase();
 
             if(escolha.equals("0")){
                 break;
@@ -118,17 +115,19 @@ public class Administrador extends Usuario {
     public void removerFuncionario(){
         System.out.println("====== Quem você deseja remover? ======");
         System.out.println("Nome: ");
-        String remover = input.nextLine();
+        String remover = input.nextLine().toUpperCase();
         System.out.println("====== Qual é a função deste funcionario? ======");
         System.out.println("====== 1 -> Personal Trainer ======");
         System.out.println("====== 2 -> Secretario ======");
         while(true){
                 
-            String escolha = input.nextLine();
+            String escolha = input.nextLine().toUpperCase();
             if(escolha.equals("1")){
                 for(int personal = 0; personal < academia.getPersonais().size(); personal++){
                     if(academia.getPersonais().get(personal).nome.equals(remover)){
                         academia.getPersonais().remove(personal);
+                    }else if (personal == (academia.getPersonais().size() - 1)) {
+                        System.out.println("Usuario não encontrado");
                     }         
                 }
                 break;
@@ -138,10 +137,11 @@ public class Administrador extends Usuario {
                 for(int secretario = 0; secretario < academia.getSecretarios().size(); secretario ++){
                     if(academia.getSecretarios().get(secretario).nome.equals(remover)){
                         academia.getSecretarios().remove(secretario);
+                    }else if (secretario == (academia.getSecretarios().size() - 1)) {
+                        System.out.println("Usuario não encontrado");
                     }         
                 }
                 break;
-
             }
             else{
                 System.out.println("====== Qual será a função do funcionário no sistema ======");
@@ -154,13 +154,13 @@ public class Administrador extends Usuario {
     public void registrarCliente() { 
         System.out.println("====== Digite as informações do cliente ======");
         System.out.println("Nome: ");
-        String nome = input.nextLine();
+        String nome = input.nextLine().toUpperCase();
         System.out.println("Email: ");
-        String email = input.nextLine();
+        String email = input.nextLine().toUpperCase();
         System.out.println("Numero de contato: ");
-        String numero_contato = input.nextLine();
+        String numero_contato = input.nextLine().toUpperCase();
         System.out.println("Senha: ");
-        String senha = input.nextLine();
+        String senha = input.nextLine().toUpperCase();
         Cliente cliente = new Cliente();
         cliente.setNome(nome);
         cliente.setEmail(email);
@@ -174,20 +174,21 @@ public class Administrador extends Usuario {
     public void acessarClientes() {
 
         System.out.println("Clientes: ");
-        System.out.println("====================");
-                for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
-                  System.out.println(academia.getClientes().get(cliente).nome);                  
-                }    
-        System.out.println("====================");
+        for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
+            System.out.println(academia.getClientes().get(cliente).nome);                  
+        }    
     }
+
     public void removerCliente() {
         System.out.println("====== Quem você deseja remover? ======");
         System.out.println("Nome: ");
-        String remover = input.nextLine();
+        String remover = input.nextLine().toUpperCase();
         for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
             if(academia.getClientes().get(cliente).nome.equals(remover)){
                 academia.getClientes().remove(cliente);
-            }         
+            }else if (cliente == (academia.getClientes().size() - 1)) {
+                System.out.println("Usuario não encontrado");
+            }                  
         }
     }
 
@@ -207,7 +208,7 @@ public class Administrador extends Usuario {
 
     public void acessarPerfilClientes() {
         System.out.println(" Digite o nome do cliente");
-        String nome = input.nextLine();
+        String nome = input.nextLine().toUpperCase();
         for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
             if(academia.getClientes().get(cliente).nome.equals(nome)){
                 System.out.println("Nome: " + academia.getClientes().get(cliente).getNome());
@@ -215,6 +216,8 @@ public class Administrador extends Usuario {
                 System.out.println("Contato: " + academia.getClientes().get(cliente).getNumero_contato());
                 System.out.println("Acesso: " + academia.getClientes().get(cliente).getAcesso());
                 System.out.println("Data de vencimento: " + academia.getClientes().get(cliente).getData_de_vencimento());
+            }else if (cliente == (academia.getClientes().size() - 1)) {
+                System.out.println("Usuario não encontrado");
             }         
         }
     }
@@ -226,10 +229,10 @@ public class Administrador extends Usuario {
         System.out.println("====== 2 -> Secretario ======");
         
         while(true){
-            String escolha = input.nextLine();
+            String escolha = input.nextLine().toUpperCase();
             if(escolha.equals("1")){
                 System.out.println(" Digite o nome do Personal Trainer: ");
-                String nome = input.nextLine();
+                String nome = input.nextLine().toUpperCase();
                     for(int personal = 0; personal < academia.getPersonais().size(); personal++){
                         if(academia.getPersonais().get(personal).nome.equals(nome)){
                             System.out.println("Nome: " + academia.getPersonais().get(personal).getNome());
@@ -238,7 +241,7 @@ public class Administrador extends Usuario {
                             System.out.println("Acesso: " + academia.getPersonais().get(personal).getAcesso()); 
                             System.out.println("Horario de atividade: " + academia.getPersonais().get(personal).getHorario_inicio() + "até " + academia.getPersonais().get(personal).getHorario_saida());
                             break;          
-                        } else if (personal == (academia.getPersonais().size() - 1)) {
+                        }else if (personal == (academia.getPersonais().size() - 1)) {
                             System.out.println("Usuario não encontrado");
                         }
                         
@@ -249,7 +252,7 @@ public class Administrador extends Usuario {
 
             if(escolha.equals("2")){
                 System.out.println(" Digite o nome do Secretário");
-                String nome = input.nextLine();
+                String nome = input.nextLine().toUpperCase();
                     for(int secretario = 0; secretario < academia.getSecretarios().size(); secretario++){
                         if(academia.getSecretarios().get(secretario).nome.equals(nome)){
                             System.out.println("Nome: " + academia.getSecretarios().get(secretario).getNome());
@@ -260,7 +263,6 @@ public class Administrador extends Usuario {
                             break;
                         }else if (secretario == (academia.getSecretarios().size() - 1)) {
                             System.out.println("Usuario não encontrado");
-
                         }
                     }
                 break;
@@ -287,8 +289,8 @@ public class Administrador extends Usuario {
 
     }
 
-    public void adicionarTreinos(String treino){
-
+    public void adicionarTreinos(){
+        System.out.println("====== Treinos da academia ======");
     }
 
     @Override
@@ -306,6 +308,15 @@ public class Administrador extends Usuario {
 
     //Sets e Gets Padrões
 
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+    
     public void setAcademia(Academia academia) {
         this.academia = academia;
     }
@@ -314,11 +325,11 @@ public class Administrador extends Usuario {
         return academia;
     }
 
-    public void setPlano(Planos plano) {
+    public void setPlano(Plano plano) {
         this.plano = plano;
     }
 
-    public Planos getPlano() {
+    public Plano getPlano() {
         return plano;
     }
 
