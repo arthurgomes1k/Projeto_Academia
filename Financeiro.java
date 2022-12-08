@@ -1,10 +1,8 @@
-
 public class Financeiro {
 
     private Academia academia;
-    private double receita;
+    private double receita = 0;
     private double despesas;
-
 
     //Sets e Gets Padrões
 
@@ -30,5 +28,10 @@ public class Financeiro {
 
     public void setDespesas(double despesas) {
         this.despesas = despesas;
+    }
+    public void setReceita(){
+      for(int i = 0; i < academia.getClientes().size(); i++){
+        receita = receita + 80;
+      }
     }
 }

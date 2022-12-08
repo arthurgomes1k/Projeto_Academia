@@ -63,7 +63,7 @@ public class Main {
             if(senha.equals("0")){
               break;
             }
-            dono.realizarRegistro(nome, cpf, email, numero_contato, senha);
+            dono.realizarRegistroDoAdministrador(nome, cpf, email, numero_contato, senha);
             academia.setNome_da_academia(nome_da_academia);
             System.out.println();
             System.out.println("====== PÁGINA DE PLANOS ======");

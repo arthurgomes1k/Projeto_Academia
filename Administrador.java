@@ -9,7 +9,7 @@ public class Administrador extends Usuario {
 
     Scanner input = new Scanner(System.in);
 
-    public void realizarRegistro(String nome, String cpf, String email, String numero_contato, String senha) {
+    public void realizarRegistroDoAdministrador(String nome, String cpf, String email, String numero_contato, String senha) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
