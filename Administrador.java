@@ -194,7 +194,7 @@ public class Administrador extends Usuario {
         }
     }
 
-    public void registrarCliente(String nome, String email, String numero_de_contato, String senha) {
+    public void registrarCliente(String nome, String email, String numero_contato, String senha) {
         Cliente cliente = new Cliente();
         cliente.setNome(nome);
         cliente.setEmail(email);
@@ -205,18 +205,44 @@ public class Administrador extends Usuario {
 
     }
 
-    public void gerarTesteCliente(Cliente nome, String sexo, int idade, double peso, double altura, String biotipo, String objetivo, String data){
-        Avaliacao avaliacao = new Avaliacao();
-        avaliacao.setCliente(nome);
-        avaliacao.setSexo(sexo);
-        avaliacao.setIdade(idade);
-        avaliacao.setPeso(peso);
-        avaliacao.setAltura(altura);
-        avaliacao.setBiotipo(biotipo);
-        avaliacao.setObjetivo(objetivo);
-        avaliacao.setData_avaliacao(data);
-        avaliacao.setMassaCorporal();
-        avaliacao.setTaxa_metabolica_basal();
+    public void gerarTesteCliente(){
+        while(true){
+            System.out.println(" DIGITE O NOME DO ALUNO: ");
+            String nome = input.nextLine().toUpperCase();
+            System.out.println();
+            for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
+                if(academia.getClientes().get(cliente).getNome().equals(nome)){
+                    Avaliacao avaliacao = new Avaliacao();
+                    avaliacao.setCliente(academia.getClientes().get(cliente));
+                    System.out.println("SEXO: ");
+                    String sexo = input.nextLine().toUpperCase();
+                    System.out.println("IDADE : ");
+                    int idade = input.nextInt();
+                    System.out.println("PESO :");
+                    double peso = input.nextDouble();
+                    System.out.println("ALTURA: ");
+                    double altura = input.nextDouble();
+                    System.out.println("BIOTIPO: ");
+                    String biotipo = input.nextLine().toUpperCase();
+                    System.out.println("OBJETIVO: ");
+                    String objetivo = input.nextLine().toUpperCase();
+                    System.out.println("DATA DE AVALIAÇÃO: ");
+                    String data = input.nextLine().toUpperCase();
+                    avaliacao.setSexo(sexo);
+                    avaliacao.setIdade(idade);
+                    avaliacao.setPeso(peso);
+                    avaliacao.setAltura(altura);
+                    avaliacao.setBiotipo(biotipo);
+                    avaliacao.setObjetivo(objetivo);
+                    avaliacao.setData_avaliacao(data);
+                    avaliacao.setMassaCorporal();
+                    avaliacao.setTaxa_metabolica_basal();
+                    break;
+                }else if (cliente == (academia.getClientes().size() - 1)) {
+                    System.out.println("Usuario não encontrado");
+                } 
+            }
+        }
     }
 
     public void acessarClientes() {
@@ -227,11 +253,13 @@ public class Administrador extends Usuario {
         }    
     }
 
-    public void removerCliente(String nome) {
+    public void removerCliente() {
+        System.out.println("====== Quem você deseja remover? ======");
+        System.out.println("Nome: ");
+        String remover = input.nextLine().toUpperCase();
         for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-            if(academia.getClientes().get(cliente).nome.equals(nome)){
+            if(academia.getClientes().get(cliente).nome.equals(remover)){
                 academia.getClientes().remove(cliente);
-                System.out.println("Cliente removido");
                 break;
             }else if (cliente == (academia.getClientes().size() - 1)) {
                 System.out.println("Usuario não encontrado");
@@ -254,13 +282,21 @@ public class Administrador extends Usuario {
     }
     
 
-    public void acessarPerfilClientes(Cliente nome) {
-        System.out.println("Nome: " + nome.getNome());
-        System.out.println("Email: " + nome.getEmail());
-        System.out.println("Contato: " + nome.getNumero_contato());
-        System.out.println("Acesso: " + nome.getAcesso());
-        System.out.println("Data de vencimento: " + nome.getData_de_vencimento());
-                   
+    public void acessarPerfilClientes() {
+        System.out.println(" Digite o nome do cliente");
+        String nome = input.nextLine().toUpperCase();
+        System.out.println();
+        for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
+            if(academia.getClientes().get(cliente).nome.equals(nome)){
+                System.out.println("Nome: " + academia.getClientes().get(cliente).getNome());
+                System.out.println("Email: " + academia.getClientes().get(cliente).getEmail());
+                System.out.println("Contato: " + academia.getClientes().get(cliente).getNumero_contato());
+                System.out.println("Acesso: " + academia.getClientes().get(cliente).getAcesso());
+                System.out.println("Data de vencimento: " + academia.getClientes().get(cliente).getData_de_vencimento());
+            }else if (cliente == (academia.getClientes().size() - 1)) {
+                System.out.println("Usuario não encontrado");
+            }         
+        }
     }
 
     public void acessarPerfilFuncionario() {
@@ -318,21 +354,37 @@ public class Administrador extends Usuario {
         }
     }
 
-    public void acessarTesteCliente(Cliente nome){
-        System.out.println();
-        System.out.println("====== AVALIAÇÃO ======");
-        System.out.println("====== DATA: " + nome.getDados().getData_avaliacao() + "======");
-        System.out.println();
-        System.out.println("NOME: " + nome.getNome());
-        System.out.println("SEXO: " + nome.getDados().getSexo());
-        System.out.println("IDADE: " + nome.getDados().getIdade());
-        System.out.println("PESO: " + nome.getDados().getPeso());
-        System.out.println("ALTURA: " + nome.getDados().getAltura());
-        System.out.println("BIOTIPO: " + nome.getDados().getBiotipo());
-        System.out.println("OBJETIVO: " + nome.getDados().getObjetivo());
-        System.out.println("TAXA METABOLICA: " + nome.getDados().getTaxa_metabolica_basal());
-        System.out.println("IMC: " + nome.getDados().getMassaCorporal());
+    public void acessarTesteCliente(){
+        System.out.println(" DIGITE O NOME DO CLIENTE: ");
+        while(true){
+            System.out.println("NOME: ");
+            String nome = input.nextLine().toUpperCase();
+            for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
+                if(academia.getClientes().get(cliente).nome.equals(nome)){
+                    System.out.println();
+                    System.out.println("====== AVALIAÇÃO ======");
+                    System.out.println("====== DATA: " + academia.getClientes().get(cliente).getDados().getData_avaliacao() + "======");
+                    System.out.println();
+                    System.out.println("NOME: " + academia.getClientes().get(cliente).getNome());
+                    System.out.println("SEXO: " + academia.getClientes().get(cliente).getDados().getSexo());
+                    System.out.println("IDADE: " + academia.getClientes().get(cliente).getDados().getIdade());
+                    System.out.println("PESO: " + academia.getClientes().get(cliente).getDados().getPeso());
+                    System.out.println("ALTURA: " + academia.getClientes().get(cliente).getDados().getAltura());
+                    System.out.println("BIOTIPO: " + academia.getClientes().get(cliente).getDados().getBiotipo());
+                    System.out.println("OBJETIVO: " + academia.getClientes().get(cliente).getDados().getObjetivo());
+                    System.out.println("TAXA METABOLICA: " + academia.getClientes().get(cliente).getDados().getTaxa_metabolica_basal());
+                    System.out.println("IMC: " + academia.getClientes().get(cliente).getDados().getMassaCorporal());
+                    System.out.println();
         System.out.println();                   
+                    System.out.println();
+
+                    
+                }else if (cliente == (academia.getClientes().size() - 1)) {
+                    System.out.println();
+                    System.out.println("Usuario não encontrado");
+                }                  
+            } 
+        }
     }
 
     public void acessarHistoricoDeTesteDoCliente() {

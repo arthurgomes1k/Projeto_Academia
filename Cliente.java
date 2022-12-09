@@ -209,4 +209,7 @@ public class Cliente extends Usuario {
         return treinos_do_aluno;
     }
 
+    public void setNumero_de_contato(String numero_contato) {
+    }
+
 }
