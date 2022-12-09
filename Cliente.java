@@ -208,8 +208,4 @@ public class Cliente extends Usuario {
     public ArrayList<Treino> getTreinos_do_aluno() {
         return treinos_do_aluno;
     }
-
-    public void setNumero_de_contato(String numero_contato) {
-    }
-
 }

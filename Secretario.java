@@ -392,5 +392,4 @@ public class Secretario extends Usuario {
         return horario_saida;
     }
     
-    
 }
