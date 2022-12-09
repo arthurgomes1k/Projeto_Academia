@@ -205,51 +205,27 @@ public class Administrador extends Usuario {
 
     }
 
-    public void gerarTesteCliente(){
-        while(true){
-            System.out.println(" DIGITE O NOME DO ALUNO: ");
-            String nome = input.nextLine().toUpperCase();
-            System.out.println();
-            for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-                if(academia.getClientes().get(cliente).getNome().equals(nome)){
-                    Avaliacao avaliacao = new Avaliacao();
-                    avaliacao.setCliente(academia.getClientes().get(cliente));
-                    System.out.println("SEXO: ");
-                    String sexo = input.nextLine().toUpperCase();
-                    System.out.println("IDADE : ");
-                    int idade = input.nextInt();
-                    System.out.println("PESO :");
-                    double peso = input.nextDouble();
-                    System.out.println("ALTURA: ");
-                    double altura = input.nextDouble();
-                    System.out.println("BIOTIPO: ");
-                    String biotipo = input.nextLine().toUpperCase();
-                    System.out.println("OBJETIVO: ");
-                    String objetivo = input.nextLine().toUpperCase();
-                    System.out.println("DATA DE AVALIAÇÃO: ");
-                    String data = input.nextLine().toUpperCase();
-                    avaliacao.setSexo(sexo);
-                    avaliacao.setIdade(idade);
-                    avaliacao.setPeso(peso);
-                    avaliacao.setAltura(altura);
-                    avaliacao.setBiotipo(biotipo);
-                    avaliacao.setObjetivo(objetivo);
-                    avaliacao.setData_avaliacao(data);
-                    avaliacao.setMassaCorporal();
-                    avaliacao.setTaxa_metabolica_basal();
-                    break;
-                }else if (cliente == (academia.getClientes().size() - 1)) {
-                    System.out.println("Usuario não encontrado");
-                } 
-            }
-        }
+    public void gerarTesteCliente(Cliente nome, String sexo, int idade, double peso, double altura, String biotipo, String objetivo, String data){
+        Avaliacao avaliacao = new Avaliacao();
+        avaliacao.setCliente(nome);
+        avaliacao.setSexo(sexo);
+        avaliacao.setIdade(idade);
+        avaliacao.setPeso(peso);
+        avaliacao.setAltura(altura);
+        avaliacao.setBiotipo(biotipo);
+        avaliacao.setObjetivo(objetivo);
+        avaliacao.setData_avaliacao(data);
+        avaliacao.setMassaCorporal();
+        avaliacao.setTaxa_metabolica_basal();
+        nome.setDados(avaliacao);
+        nome.getAvaliacoes().add(avaliacao);
     }
 
     public void acessarClientes() {
 
         System.out.println("Clientes: ");
         for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
-            System.out.println(academia.getClientes().get(cliente).nome);                  
+            System.out.println(academia.getClientes().get(cliente).getNome());                  
         }    
     }
 
@@ -258,7 +234,7 @@ public class Administrador extends Usuario {
         System.out.println("Nome: ");
         String remover = input.nextLine().toUpperCase();
         for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-            if(academia.getClientes().get(cliente).nome.equals(remover)){
+            if(academia.getClientes().get(cliente).getNome().equals(nome)){
                 academia.getClientes().remove(cliente);
                 break;
             }else if (cliente == (academia.getClientes().size() - 1)) {
@@ -267,8 +243,13 @@ public class Administrador extends Usuario {
         }
     }
 
-    public void acessarRelatorioAcademia() {
+    public void acessarReceitaDaAcademia() {
+        System.out.println("Receita: " + academia.getFinanceiro().getReceita());
         
+    }
+
+    public void acessarDespesasDaAcademia(){
+        System.out.println("Despesas: " + academia.getFinanceiro().getDespesas());
     }
 
     @Override
@@ -387,81 +368,60 @@ public class Administrador extends Usuario {
         }
     }
 
-    public void acessarHistoricoDeTesteDoCliente() {
-        System.out.println(" DIGITE O NOME DO CLIENTE: ");
-        while(true){
-            System.out.println("NOME: ");
-            String nome = input.nextLine().toUpperCase();
-            for(int cliente = 0 ; cliente < academia.getClientes().size(); cliente++ ){
-                if(academia.getClientes().get(cliente).nome.equals(nome)){
-                    System.out.println();
-                    System.out.println("====== HISTÓRICO DE TESTES ======");
-                    for(int avaliacao = 0; avaliacao < academia.getClientes().get(cliente).getAvaliacoes().size(); avaliacao++){
-                        System.out.println((avaliacao + 1) + "º AVALIAÇÃO: " + academia.getClientes().get(cliente).getAvaliacoes().get(avaliacao).getData_avaliacao());
-                    }
-                }else if (cliente == (academia.getClientes().size() - 1)) {
-                    System.out.println();
-                    System.out.println("Usuario não encontrado");
-                }                  
-            } 
-        }
+    public void acessarHistoricoDeTesteDoCliente(Cliente nome) {
+        System.out.println();
+        System.out.println("====== HISTÓRICO DE TESTES ======");
+        for(int avaliacao = 0; avaliacao < nome.getAvaliacoes().size(); avaliacao++){
+            System.out.println((avaliacao + 1) + "º AVALIAÇÃO: " + nome.getAvaliacoes().get(avaliacao).getData_avaliacao());
+        }                       
     }
 
-    public void gerarRelatorioCliente() {
-        while(true){
-            System.out.println(" DIGITE O NOME DO ALUNO: ");
-            String nome = input.nextLine().toUpperCase();
-            for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-                if(academia.getClientes().get(cliente).getNome().equals(nome)){
-                    int ultimo = (academia.getClientes().get(cliente).getAvaliacoes().size() - 1);
-                    int penultimo = (academia.getClientes().get(cliente).getAvaliacoes().size() - 2);
-                    System.out.println("RELATÓRIO DO ALUNO " + academia.getClientes().get(cliente).getNome());
-                    System.out.println();
-                    if(academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getPeso() < academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getPeso()){
-                        System.out.println("Você perdeu peso");
-                        System.out.println("Seu peso mudou de " + academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getPeso() + "kilos para " + academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getPeso() + "kilos");
-                    }
-                    else if(academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getPeso() > academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getPeso()){
-                        System.out.println("Você ganhou peso");
-                        System.out.println("Seu peso mudou de " + academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getPeso() + "kilos para " + academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getPeso() + "kilos");
-                    }
-                    else{
-                        System.out.println("Seu peso continua igual");
-                    }
-                    if(academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getTaxa_metabolica_basal() < academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getTaxa_metabolica_basal()){
-                        System.out.println();
-                        System.out.println("Sua taxa metabolica diminuiu de " + academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + "para " + academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
-                    }
-                    else if(academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getTaxa_metabolica_basal() > academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getTaxa_metabolica_basal()){
-                        System.out.println();
-                        System.out.println("Sua taxa metabolica aumentou de " + academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + "para " + academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
-                    }
-                    else{
-                        System.out.println();
-                        System.out.println("Sua taxa metabolica continua igual");
-                    }
-
-
-
-
-                    if(academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getMassaCorporal() < academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getMassaCorporal()){
-                        System.out.println();
-                        System.out.println("Seu IMC diminuiu");
-                        System.out.println("Sua massa corporal mudou de " + academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getMassaCorporal() + "para " + academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getMassaCorporal());
-                    }
-                    else if(academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getMassaCorporal() > academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getMassaCorporal()){
-                        System.out.println();
-                        System.out.println("Seu IMC aumentou");
-                        System.out.println("Sua massa corporal mudou de " + academia.getClientes().get(cliente).getAvaliacoes().get(penultimo).getMassaCorporal() + "para " + academia.getClientes().get(cliente).getAvaliacoes().get(ultimo).getMassaCorporal());
-                    }
-                    else{
-                        System.out.println();
-                        System.out.println("Seu IMC continua igual");
-                    }
-                        
-                }
-            }
+    public void gerarRelatorioCliente(Cliente nome) {
+        int ultimo = (nome.getAvaliacoes().size() - 1);
+        int penultimo = (nome.getAvaliacoes().size() - 2);
+        System.out.println("RELATÓRIO DO ALUNO " + nome.getNome());
+        System.out.println();
+        if(nome.getAvaliacoes().get(ultimo).getPeso() < nome.getAvaliacoes().get(penultimo).getPeso()){
+            System.out.println("Você perdeu peso");
+            System.out.println("Seu peso mudou de " + nome.getAvaliacoes().get(penultimo).getPeso() + "kilos para " + nome.getAvaliacoes().get(ultimo).getPeso() + "kilos");
         }
+        else if(nome.getAvaliacoes().get(ultimo).getPeso() > nome.getAvaliacoes().get(penultimo).getPeso()){
+            System.out.println("Você ganhou peso");
+            System.out.println("Seu peso mudou de " + nome.getAvaliacoes().get(penultimo).getPeso() + "kilos para " + nome.getAvaliacoes().get(ultimo).getPeso() + "kilos");
+        }
+        else{
+            System.out.println("Seu peso continua igual");
+        }
+        if(nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal() < nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal()){
+            System.out.println();
+            System.out.println("Sua taxa metabolica diminuiu de " + nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + "para " + nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
+        }
+        else if(nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal() > nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal()){
+            System.out.println();
+            System.out.println("Sua taxa metabolica aumentou de " + nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + "para " + nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
+        }
+        else{
+            System.out.println();
+            System.out.println("Sua taxa metabolica continua igual");
+        }
+
+
+
+
+        if(nome.getAvaliacoes().get(ultimo).getMassaCorporal() < nome.getAvaliacoes().get(penultimo).getMassaCorporal()){
+            System.out.println();
+            System.out.println("Seu IMC diminuiu");
+            System.out.println("Sua massa corporal mudou de " + nome.getAvaliacoes().get(penultimo).getMassaCorporal() + "para " + nome.getAvaliacoes().get(ultimo).getMassaCorporal());
+        }
+        else if(nome.getAvaliacoes().get(ultimo).getMassaCorporal() > nome.getAvaliacoes().get(penultimo).getMassaCorporal()){
+            System.out.println();
+            System.out.println("Seu IMC aumentou");
+            System.out.println("Sua massa corporal mudou de " + nome.getAvaliacoes().get(penultimo).getMassaCorporal() + "para " + nome.getAvaliacoes().get(ultimo).getMassaCorporal());
+        }
+        else{
+            System.out.println();
+            System.out.println("Seu IMC continua igual");
+        }                    
     }
 
     public void adicionarTreinoSistema(){
@@ -644,303 +604,258 @@ public class Administrador extends Usuario {
         }
     }
 
-    public void adicionarTreinosAluno() {
-        while(true){
-            System.out.println(" DIGITE O NOME DO ALUNO: ");
-            String nome = input.nextLine().toUpperCase();
-            for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-                if(academia.getClientes().get(cliente).getNome().equals(nome)){
-                    System.out.println(" DIGITE O TIPO DO EXERCICIO QUE SERÁ ADICIONADO ");
-                    System.out.println();
-                    System.out.println(" TIPO A = EXERCICIOS DE PEITO, OMBRO E TRICEPS ");
-                    System.out.println(" TIPO B = EXERCICIOS DE COSTA, ABDOMEM E BICEPS ");
-                    System.out.println(" TIPO C = EXERCICIOS DE PARTE INFERIOR ");
-                    while(true){
-                        System.out.println();
-                        System.out.println("TIPO: ");
-                        String escolha = input.nextLine().toUpperCase();                                       
-                        if(escolha.equals("A")){
-                           Treino treino = new Treino();
-                           treino.setCliente(academia.getClientes().get(cliente));
-                           treino.setTipo_de_treino("TIPO A");
-                           for(int exercicios = 0; exercicios < academia.getTreino_A().size(); exercicios++){
-                                System.out.println(academia.getTreino_A().get(exercicios));
-                           }
-                           while(true){
-                                System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
-                                String exercicio = input.nextLine().toUpperCase();
-                                for(int exercicios = 0; exercicios < academia.getTreino_A().size(); exercicios++){
-                                    if(academia.getTreino_A().get(exercicios).toUpperCase().equals(exercicio)){
-                                        treino.getListaDeTreinos().add(exercicio);
-                                        break;
-                                    }else if(exercicios == (academia.getTreino_A().size() - 1)){
-                                        System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
-                                    }
-                                }
-                                System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
-                                System.out.println(" 1 - SIM    2 - NÃO");
-                                escolha = input.nextLine().toUpperCase();
-                                if(escolha.equals("2")){
-                                    academia.getClientes().get(cliente).getTreinos_do_aluno().add(treino);
-                                    break;
-                                }
-                            }
+    public void adicionarTreinosAluno(Cliente nome) {
+        boolean voltar = false;
+        System.out.println(" DIGITE O TIPO DO EXERCICIO QUE SERÁ ADICIONADO ");
+        System.out.println();
+        System.out.println(" TIPO A = EXERCICIOS DE PEITO, OMBRO E TRICEPS ");
+        System.out.println(" TIPO B = EXERCICIOS DE COSTA, ABDOMEM E BICEPS ");
+        System.out.println(" TIPO C = EXERCICIOS DE PARTE INFERIOR ");
+        while(voltar == false){
+            System.out.println();
+            System.out.println("TIPO: ");
+            String escolha = input.nextLine().toUpperCase();                                       
+            if(escolha.equals("A")){
+               Treino treino = new Treino();
+               treino.setCliente(nome);
+               treino.setTipo_de_treino("TIPO A");
+               for(int exercicios = 0; exercicios < academia.getTreino_A().size(); exercicios++){
+                    System.out.println(academia.getTreino_A().get(exercicios));
+               }
+               while(true){
+                    System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
+                    String exercicio = input.nextLine().toUpperCase();
+                    for(int exercicios = 0; exercicios < academia.getTreino_A().size(); exercicios++){
+                        if(academia.getTreino_A().get(exercicios).toUpperCase().equals(exercicio)){
+                            treino.getListaDeTreinos().add(exercicio);
                             break;
-                              
-                        }          
-                        else if(escolha.equals("B")){
-                            Treino treino = new Treino();
-                            treino.setCliente(academia.getClientes().get(cliente));
-                            treino.setTipo_de_treino("TIPO B");
-                            for(int exercicios = 0; exercicios < academia.getTreino_B().size(); exercicios++){
-                                    System.out.println(academia.getTreino_B().get(exercicios));
-                            }
-                            while(true){
-                                System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
-                                String exercicio = input.nextLine().toUpperCase();
-                                for(int exercicios = 0; exercicios < academia.getTreino_B().size(); exercicios++){
-                                    if(academia.getTreino_B().get(exercicios).equals(exercicio)){
-                                       treino.getListaDeTreinos().add(exercicio);
-                                       break;
-                                    }else if(exercicios == (academia.getTreino_B().size() - 1)){
-                                       System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
-                                    }
-                                }
-                                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
-                                    System.out.println(" 1 - SIM    2 - NÃO");
-                                    escolha = input.nextLine().toUpperCase();
-                                    if(escolha.equals("2")){
-                                        academia.getClientes().get(cliente).getTreinos_do_aluno().add(treino);
-                                        break;
-                                    }
-                            }
-                            break;
-                        }
-                        else if(escolha.equals("C")){
-                            Treino treino = new Treino();
-                            treino.setCliente(academia.getClientes().get(cliente));
-                            treino.setTipo_de_treino("TIPO C");
-                            for(int exercicios = 0; exercicios < academia.getTreino_C().size(); exercicios++){
-                                    System.out.println(academia.getTreino_C().get(exercicios));
-                            }
-                            while(true){
-                                System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
-                                String exercicio = input.nextLine().toUpperCase();
-                                for(int exercicios = 0; exercicios < academia.getTreino_C().size(); exercicios++){
-                                    if(academia.getTreino_C().get(exercicios).equals(exercicio)){
-                                        treino.getListaDeTreinos().add(exercicio);
-                                        break;
-                                    }else if(exercicios == (academia.getTreino_C().size() - 1)){
-                                        System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
-                                    }
-                                }
-                                System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
-                                System.out.println(" 1 - SIM    2 - NÃO");
-                                escolha = input.nextLine().toUpperCase();
-                                if(escolha.equals("2")){
-                                    academia.getClientes().get(cliente).getTreinos_do_aluno().add(treino);
-                                    break;
-                                }
-                            }
-                            break;
+                        }else if(exercicios == (academia.getTreino_A().size() - 1)){
+                            System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
                         }
                     }
-                }else if (cliente == (academia.getClientes().size() - 1)) {
-                    System.out.println("Usuario não encontrado");
+                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
+                    System.out.println(" 1 - SIM    2 - NÃO");
+                    escolha = input.nextLine().toUpperCase();
+                    if(escolha.equals("1")){
+                        break;
+                    }
+                    else if(escolha.equals("2")){
+                        nome.getTreinos_do_aluno().add(treino);
+                        voltar = true;
+                        break;
+                    }
                 }
-            }
-
-        System.out.println(" DESEJA PROCURAR OUTRO CLIENTE? ");
-        System.out.println(" 1 - SIM    2 - NÃO");
-        String escolha = input.nextLine().toUpperCase();
-        if(escolha.equals("2")){
-            break;
-        }                
-            
-        }
-    }
-
-    public void acessarTreinoAluno(){
-        while(true){
-            System.out.println(" DIGITE O NOME DO ALUNO: ");
-            String nome = input.nextLine().toUpperCase();
-            for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-                if(academia.getClientes().get(cliente).getNome().equals(nome)){
-                    System.out.println(" DIGITE O TIPO DO EXERCICIO QUE SERÁ ADICIONADO ");
-                    System.out.println();
-                    System.out.println(" TIPO A = EXERCICIOS DE PEITO, OMBRO E TRICEPS ");
-                    System.out.println(" TIPO B = EXERCICIOS DE COSTA, ABDOMEM E BICEPS ");
-                    System.out.println(" TIPO C = EXERCICIOS DE PARTE INFERIOR ");
-                    while(true){
-                        System.out.println();
-                        System.out.println("TIPO: ");
-                        String escolha = input.nextLine().toUpperCase();
-                        if(escolha.equals("A")){
-                            for(int treino = 0; treino < academia.getClientes().get(cliente).getTreinos_do_aluno().size(); treino++){
-                                if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO A")){
-                                    System.out.println();
-                                    System.out.println(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos());
-                                }else if(treino == academia.getClientes().get(cliente).getTreinos_do_aluno().size() - 1){
-                                    System.out.println();
-                                    System.out.println("TREINO NÃO REGISTRADO");
-                                }
-                            }
+                  
+            }          
+            else if(escolha.equals("B")){
+                Treino treino = new Treino();
+                treino.setCliente(nome);
+                treino.setTipo_de_treino("TIPO B");
+                for(int exercicios = 0; exercicios < academia.getTreino_B().size(); exercicios++){
+                        System.out.println(academia.getTreino_B().get(exercicios));
+                }
+                while(true){
+                    System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
+                    String exercicio = input.nextLine().toUpperCase();
+                    for(int exercicios = 0; exercicios < academia.getTreino_B().size(); exercicios++){
+                        if(academia.getTreino_B().get(exercicios).equals(exercicio)){
+                           treino.getListaDeTreinos().add(exercicio);
+                           break;
+                        }else if(exercicios == (academia.getTreino_B().size() - 1)){
+                           System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
                         }
-                        else if(escolha.equals("B")){
-                            for(int treino = 0; treino < academia.getClientes().get(cliente).getTreinos_do_aluno().size(); treino++){
-                                if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO B")){
-                                    System.out.println();
-                                    System.out.println(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos());
-                                }else if(treino == academia.getClientes().get(cliente).getTreinos_do_aluno().size() - 1){
-                                    System.out.println();
-                                    System.out.println("TREINO NÃO REGISTRADO");
-                                }
-                            }   
-                        }
-                        else if(escolha.equals("C")){
-                            for(int treino = 0; treino < academia.getClientes().get(cliente).getTreinos_do_aluno().size(); treino++){
-                                if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO C")){
-                                    System.out.println();
-                                    System.out.println(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos());
-                                }else if(treino == academia.getClientes().get(cliente).getTreinos_do_aluno().size() - 1){
-                                    System.out.println();
-                                    System.out.println("TREINO NÃO REGISTRADO");
-                                }
-                            }
-                        }
-                        System.out.println();
-                        System.out.println("DESEJA VER MAIS TREINOS DESTE ALUNO?");
+                    }
+                        System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
                         System.out.println(" 1 - SIM    2 - NÃO");
                         escolha = input.nextLine().toUpperCase();
-                        if(escolha.equals("2")){
+                        if(escolha.equals("1")){
                             break;
                         }
-                             
+                        else if(escolha.equals("2")){
+                            nome.getTreinos_do_aluno().add(treino);
+                            voltar = true;
+                            break;
+                        }
+                }
+            }
+            else if(escolha.equals("C")){
+                Treino treino = new Treino();
+                treino.setCliente(nome);
+                treino.setTipo_de_treino("TIPO C");
+                for(int exercicios = 0; exercicios < academia.getTreino_C().size(); exercicios++){
+                        System.out.println(academia.getTreino_C().get(exercicios));
+                }
+                while(true){
+                    System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
+                    String exercicio = input.nextLine().toUpperCase();
+                    for(int exercicios = 0; exercicios < academia.getTreino_C().size(); exercicios++){
+                        if(academia.getTreino_C().get(exercicios).equals(exercicio)){
+                            treino.getListaDeTreinos().add(exercicio);
+                            break;
+                        }
+                        else if(exercicios == (academia.getTreino_C().size() - 1)){
+                            System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
+                        }
                     }
-                }else if (cliente == (academia.getClientes().size() - 1)) {
-                    System.out.println();
-                    System.out.println("Usuario não encontrado");
+                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
+                    System.out.println(" 1 - SIM    2 - NÃO");
+                    escolha = input.nextLine().toUpperCase();
+                    if(escolha.equals("1")){
+                        break;
+                    }
+                    else if(escolha.equals("2")){
+                        nome.getTreinos_do_aluno().add(treino);
+                        voltar = true;
+                        break;
+                    }
                 }
-                System.out.println();
-                System.out.println("DESEJA PESQUISAR OUTRO ALUNO?");
-                System.out.println(" 1 - SIM    2 - NÃO");
-                String escolha = input.nextLine().toUpperCase();
-                if(escolha.equals("2")){
-                    break;
-                }
-
             }
         }
-    }
+    }                   
 
-    public void removerTreinoAluno(){
+    public void acessarTreinoAluno(Cliente nome){
+        System.out.println(" DIGITE O TIPO DO EXERCICIO QUE SERÁ ADICIONADO ");
+        System.out.println();
+        System.out.println(" TIPO A = EXERCICIOS DE PEITO, OMBRO E TRICEPS ");
+        System.out.println(" TIPO B = EXERCICIOS DE COSTA, ABDOMEM E BICEPS ");
+        System.out.println(" TIPO C = EXERCICIOS DE PARTE INFERIOR ");
         while(true){
-            System.out.println(" DIGITE O NOME DO ALUNO: ");
-            String nome = input.nextLine().toUpperCase();
-            for(int cliente = 0; cliente < academia.getClientes().size(); cliente++){
-                if(academia.getClientes().get(cliente).getNome().equals(nome)){
-                    System.out.println(" DIGITE O TIPO DO EXERCICIO QUE SERÁ ADICIONADO ");
-                    System.out.println();
-                    System.out.println(" TIPO A = EXERCICIOS DE PEITO, OMBRO E TRICEPS ");
-                    System.out.println(" TIPO B = EXERCICIOS DE COSTA, ABDOMEM E BICEPS ");
-                    System.out.println(" TIPO C = EXERCICIOS DE PARTE INFERIOR ");
-                    while(true){
+            System.out.println();
+            System.out.println("TIPO: ");
+            String escolha = input.nextLine().toUpperCase();
+            if(escolha.equals("A")){
+                for(int treino = 0; treino < nome.getTreinos_do_aluno().size(); treino++){
+                    if(nome.getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO A")){
                         System.out.println();
-                        System.out.println("TIPO: ");
-                        String escolha = input.nextLine().toUpperCase();
-                        if(escolha.equals("A")){
-                            for(int treino = 0; treino < academia.getClientes().get(cliente).getTreinos_do_aluno().size(); treino++){
-                                if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO A")){
-                                    System.out.println();
-                                    System.out.println(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos());
-                                    System.out.println();
-                                    System.out.println(" O QUE DESEJA REMOVER? ");
-                                    System.out.println("EXERCICIO: ");
-                                    String exercicio = input.nextLine().toUpperCase();
-                                    for(int exercicios = 0; exercicios < academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
-                                        if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
-                                            academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
-                                        }else if(exercicios == academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
-                                            System.out.println();
-                                            System.out.println("EXERCICIO NÃO ENCONTRADO");
-                                        }            
-                                    }
-                                }else if(treino == academia.getClientes().get(cliente).getTreinos_do_aluno().size() - 1){
-                                    System.out.println();
-                                    System.out.println("TREINO NÃO REGISTRADO");
-                                }
-                            }
-                        }
-                        else if(escolha.equals("B")){
-                            for(int treino = 0; treino < academia.getClientes().get(cliente).getTreinos_do_aluno().size(); treino++){
-                                if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO B")){
-                                    System.out.println();
-                                    System.out.println(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos());
-                                    System.out.println();
-                                    System.out.println(" O QUE DESEJA REMOVER? ");
-                                    System.out.println("EXERCICIO: ");
-                                    String exercicio = input.nextLine().toUpperCase();
-                                    for(int exercicios = 0; exercicios < academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
-                                        if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
-                                            academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
-                                        }else if(exercicios == academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
-                                            System.out.println();
-                                            System.out.println("EXERCICIO NÃO ENCONTRADO");
-                                        }            
-                                    }
-                                }else if(treino == academia.getClientes().get(cliente).getTreinos_do_aluno().size() - 1){
-                                    System.out.println();
-                                    System.out.println("TREINO NÃO REGISTRADO");
-                                }
-                            }
-                        }
-                        else if(escolha.equals("C")){
-                            for(int treino = 0; treino < academia.getClientes().get(cliente).getTreinos_do_aluno().size(); treino++){
-                                if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO C")){
-                                    System.out.println();
-                                    System.out.println(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos());
-                                    System.out.println();
-                                    System.out.println(" O QUE DESEJA REMOVER? ");
-                                    System.out.println("EXERCICIO: ");
-                                    String exercicio = input.nextLine().toUpperCase();
-                                    for(int exercicios = 0; exercicios < academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
-                                        if(academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
-                                            academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
-                                        }else if(exercicios == academia.getClientes().get(cliente).getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
-                                            System.out.println();
-                                            System.out.println("EXERCICIO NÃO ENCONTRADO");
-                                        }            
-                                    }
-                                }else if(treino == academia.getClientes().get(cliente).getTreinos_do_aluno().size() - 1){
-                                    System.out.println();
-                                    System.out.println("TREINO NÃO REGISTRADO");
-                                }
-                            }
-                        }
+                        System.out.println(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos());
+                    }else if(treino == nome.getTreinos_do_aluno().size() - 1){
                         System.out.println();
-                        System.out.println("DESEJA CONTINUAR REMOVENDO TREINOS?");
-                        System.out.println(" 1 - SIM    2 - NÃO");
-                        escolha = input.nextLine().toUpperCase();
-                        if(escolha.equals("2")){
-                            break;
-                        }
-                             
+                        System.out.println("TREINO NÃO REGISTRADO");
                     }
-                }else if (cliente == (academia.getClientes().size() - 1)) {
-                    System.out.println();
-                    System.out.println("Usuario não encontrado");
                 }
-                System.out.println();
-                System.out.println("DESEJA PESQUISAR OUTRO ALUNO?");
-                System.out.println(" 1 - SIM    2 - NÃO");
-                String escolha = input.nextLine().toUpperCase();
-                if(escolha.equals("2")){
-                    break;
-                }
-
             }
+            else if(escolha.equals("B")){
+                for(int treino = 0; treino < nome.getTreinos_do_aluno().size(); treino++){
+                    if(nome.getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO B")){
+                        System.out.println();
+                        System.out.println(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos());
+                    }else if(treino == nome.getTreinos_do_aluno().size() - 1){
+                        System.out.println();
+                        System.out.println("TREINO NÃO REGISTRADO");
+                    }
+                }   
+            }
+            else if(escolha.equals("C")){
+                for(int treino = 0; treino < nome.getTreinos_do_aluno().size(); treino++){
+                    if(nome.getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO C")){
+                        System.out.println();
+                        System.out.println(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos());
+                    }else if(treino == nome.getTreinos_do_aluno().size() - 1){
+                        System.out.println();
+                        System.out.println("TREINO NÃO REGISTRADO");
+                    }
+                }
+            }
+            System.out.println();
+            System.out.println("DESEJA VER MAIS TREINOS DESTE ALUNO?");
+            System.out.println(" 1 - SIM    2 - NÃO");
+            escolha = input.nextLine().toUpperCase();
+            if(escolha.equals("2")){
+                break;
+            }
+                 
         }
-    }
+    }                    
+
+    public void removerTreinoAluno(Cliente nome){
+        System.out.println(" DIGITE O TIPO DO EXERCICIO QUE SERÁ ADICIONADO ");
+        System.out.println();
+        System.out.println(" TIPO A = EXERCICIOS DE PEITO, OMBRO E TRICEPS ");
+        System.out.println(" TIPO B = EXERCICIOS DE COSTA, ABDOMEM E BICEPS ");
+        System.out.println(" TIPO C = EXERCICIOS DE PARTE INFERIOR ");
+        while(true){
+            System.out.println();
+            System.out.println("TIPO: ");
+            String escolha = input.nextLine().toUpperCase();
+            if(escolha.equals("A")){
+                for(int treino = 0; treino < nome.getTreinos_do_aluno().size(); treino++){
+                    if(nome.getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO A")){
+                        System.out.println();
+                        System.out.println(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos());
+                        System.out.println();
+                        System.out.println(" O QUE DESEJA REMOVER? ");
+                        System.out.println("EXERCICIO: ");
+                        String exercicio = input.nextLine().toUpperCase();
+                        for(int exercicios = 0; exercicios < nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
+                            if(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
+                                nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
+                            }else if(exercicios == nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
+                                System.out.println();
+                                System.out.println("EXERCICIO NÃO ENCONTRADO");
+                            }            
+                        }
+                    }else if(treino == nome.getTreinos_do_aluno().size() - 1){
+                        System.out.println();
+                        System.out.println("TREINO NÃO REGISTRADO");
+                    }
+                }
+            }
+            else if(escolha.equals("B")){
+                for(int treino = 0; treino < nome.getTreinos_do_aluno().size(); treino++){
+                    if(nome.getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO B")){
+                        System.out.println();
+                        System.out.println(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos());
+                        System.out.println();
+                        System.out.println(" O QUE DESEJA REMOVER? ");
+                        System.out.println("EXERCICIO: ");
+                        String exercicio = input.nextLine().toUpperCase();
+                        for(int exercicios = 0; exercicios < nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
+                            if(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
+                                nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
+                            }else if(exercicios == nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
+                                System.out.println();
+                                System.out.println("EXERCICIO NÃO ENCONTRADO");
+                            }            
+                        }
+                    }else if(treino == nome.getTreinos_do_aluno().size() - 1){
+                        System.out.println();
+                        System.out.println("TREINO NÃO REGISTRADO");
+                    }
+                }
+            }
+            else if(escolha.equals("C")){
+                for(int treino = 0; treino < nome.getTreinos_do_aluno().size(); treino++){
+                    if(nome.getTreinos_do_aluno().get(treino).getTipo_de_treino().equals("TIPO C")){
+                        System.out.println();
+                        System.out.println(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos());
+                        System.out.println();
+                        System.out.println(" O QUE DESEJA REMOVER? ");
+                        System.out.println("EXERCICIO: ");
+                        String exercicio = input.nextLine().toUpperCase();
+                        for(int exercicios = 0; exercicios < nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
+                            if(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
+                                nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
+                            }else if(exercicios == nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
+                                System.out.println();
+                                System.out.println("EXERCICIO NÃO ENCONTRADO");
+                            }            
+                        }
+                    }else if(treino == nome.getTreinos_do_aluno().size() - 1){
+                        System.out.println();
+                        System.out.println("TREINO NÃO REGISTRADO");
+                    }
+                }
+            }
+            System.out.println();
+            System.out.println("DESEJA CONTINUAR REMOVENDO TREINOS?");
+            System.out.println(" 1 - SIM    2 - NÃO");
+            escolha = input.nextLine().toUpperCase();
+            if(escolha.equals("2")){
+                break;
+            }
+                 
+        }
+    }                   
 
     // SETS E GETS
     public void setCpf(String cpf) {

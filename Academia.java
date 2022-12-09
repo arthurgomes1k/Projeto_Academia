@@ -7,6 +7,7 @@ public class Academia {
     private Administrador administrador;
     ArrayList<Plano> planos = new ArrayList();
     private Financeiro financeiro;
+    private int mensaliade = 80;
     ArrayList<Cliente> clientes = new ArrayList();
     ArrayList<Personal_trainer> personais = new ArrayList();
     ArrayList<Secretario> secretarios = new ArrayList();
@@ -125,6 +126,14 @@ public class Academia {
 
     public ArrayList<String> getTreino_C() {
         return treino_C;
+    }
+
+    public void setMensaliade(int mensaliade) {
+        this.mensaliade = mensaliade;
+    }
+    
+    public int getMensaliade() {
+        return mensaliade;
     }
 
 }
