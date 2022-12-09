@@ -4,6 +4,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class Tests {
+
+    // public static void main(String[] args){
+
+
+    // }
     
     @Test
     public  void RegistroDoAdministradorTest(){
@@ -17,7 +22,7 @@ public class Tests {
         String senha = "123";
         String administrador = "Administrador";
 
-        dono.realizarRegistroDoAdministrador(nome, cpf, email, numero_contato,senha);
+        dono.realizarRegistro(nome, cpf, email, numero_contato,senha);
         
         assertEquals(nome, dono.getNome());
         assertEquals(cpf, dono.getCpf());
@@ -39,7 +44,7 @@ public class Tests {
         String numero_contato = "83996019365";
         String senha = "123";
 
-        dono.realizarRegistroDoAdministrador(nome, cpf, email, numero_contato,senha);
+        dono.realizarRegistro(nome, cpf, email, numero_contato,senha);
 
         dono.realizarLogin(email, senha);
 
@@ -66,6 +71,30 @@ public class Tests {
 
         
     }
+    @Test
+    public void registrarClienteTest(){
 
+        Academia oxygim = new Academia();
+        Administrador dono = new Administrador();
+        
+        dono.setAcademia(oxygim);
+        dono.realizarRegistro("Raniere", "000.000", "raniere@gmail.com", "83996019365","123");
+        dono.realizarLogin("raniere@gmail.com", "123");
 
+         String nome = "Arthur";
+          String email = "arthur@gmail.com";
+          String numero_contato = "321-123";
+          String senha = "00";
+
+        dono.registrarCliente(nome,email,numero_contato,senha);
+        
+       for (Cliente cliente : oxygim.getClientes()) {
+        if(cliente.getNome().equals(nome)){
+            assertEquals(nome, cliente.getNome());
+            assertEquals(email, cliente.getEmail());
+            assertEquals(numero_contato, cliente.getNumero_contato());
+            assertEquals(senha, cliente.getSenha());
+        }
+       }
+    }
 }
