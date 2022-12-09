@@ -1,4 +1,4 @@
-package Projeto_Academia;
+
 public class Financeiro {
 
     private Academia academia;
@@ -20,17 +20,16 @@ public class Financeiro {
         return receita;
     }
 
-    public void setReceita(){
-        for(int i = 0; i < academia.getClientes().size(); i++){
-          this.receita = receita + academia.getMensaliade();
-        }
+    public void setReceita(double receita){
+        this.receita = receita;
+        
     }
 
     public double getDespesas() {
         return despesas;
     }
 
-    public void setDespesas() {
-        this.despesas = despesas + academia.getAdministrador().getPlano().getValor();
+    public void setDespesas(double despesas) {
+        this.despesas = despesas;
     }
 }

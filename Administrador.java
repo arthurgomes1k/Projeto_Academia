@@ -1,4 +1,4 @@
-package Projeto_Academia;
+
 import java.util.Scanner;
 
 public class Administrador extends Usuario {
@@ -23,73 +23,29 @@ public class Administrador extends Usuario {
         verificarLogin(email, senha);
     }
 
-    public void registrarFuncionario(){
-          System.out.println();  
-          System.out.println("====== Qual será a função do funcionário no sistema ======");
-          System.out.println("====== 1 -> Personal Trainer ======");
-          System.out.println("====== 2 -> Secretario ======");
-          System.out.println();
-          while(true){
-                
-              String escolha = input.nextLine().toUpperCase();
-              if(escolha.equals("1")){
-                  System.out.println("====== Digite as informações do personal ======");
-                  System.out.println("Nome: ");
-                  String nome = input.nextLine().toUpperCase();
-                  System.out.println("Email: ");
-                  String email = input.nextLine().toUpperCase();
-                  System.out.println("Numero de contato: ");
-                  String numero_contato = input.nextLine().toUpperCase();
-                  System.out.println("Senha: ");
-                  String senha = input.nextLine().toUpperCase();
-                  System.out.println("Inicio de expediente: ");
-                  String horario_inicial = input.nextLine().toUpperCase();
-                  System.out.println("Fim de expediente: ");
-                  String horario_saida = input.nextLine().toUpperCase();
-                  Personal_trainer personal = new Personal_trainer();
-                  personal.setNome(nome);
-                  personal.setEmail(email);
-                  personal.setNumero_contato(numero_contato);
-                  personal.setSenha(senha);
-                  personal.setAcesso("Funcionario");
-                  personal.setHorario_inicio(horario_inicial);
-                  personal.setHorario_saida(horario_saida);
-                  academia.getPersonais().add(personal);
-                  break;
-                }
-              if(escolha.equals("2")){
-                  System.out.println("====== Digite as informações do secretario ======");
-                  System.out.println("Nome: ");
-                  String nome = input.nextLine().toUpperCase();
-                  System.out.println("Email: ");
-                  String email = input.nextLine().toUpperCase();
-                  System.out.println("Numero de contato: ");
-                  String numero_contato = input.nextLine().toUpperCase();
-                  System.out.println("Senha: ");
-                  String senha = input.nextLine().toUpperCase();
-                  String horario_inicial = input.nextLine().toUpperCase();
-                  System.out.println("Fim de expediente: ");
-                  String horario_saida = input.nextLine().toUpperCase();
-                  Personal_trainer personal = new Personal_trainer();
-                  Secretario secretario = new Secretario();
-                  secretario.setNome(nome);
-                  secretario.setEmail(email);
-                  secretario.setNumero_contato(numero_contato);
-                  secretario.setSenha(senha);
-                  secretario.setAcesso("Funcionario");
-                  secretario.setHorario_inicio(horario_inicial);
-                  secretario.setHorario_saida(horario_saida);
-                  academia.getSecretarios().add(secretario);
-                  break;
-              }
-              else{
-                System.out.println();
-                System.out.println("====== Qual será a função do funcionário no sistema ======");
-                System.out.println("====== 1 -> Personal Trainer ======");
-                System.out.println("====== 2 -> Secretario ======");    
-              }
-          }
-       }
+    public void registrarPersonalTrainer(String nome, String email, String numero_contato, String senha, String horario_inicial, String horario_saida){     
+        Personal_trainer personal = new Personal_trainer();
+        personal.setNome(nome);
+        personal.setEmail(email);
+        personal.setNumero_contato(numero_contato);
+        personal.setSenha(senha);
+        personal.setAcesso("Funcionario");
+        personal.setHorario_inicio(horario_inicial);
+        personal.setHorario_saida(horario_saida);
+        academia.getPersonais().add(personal);                          
+    }
+
+    public void registrarSecretario(String nome, String email, String numero_contato, String senha, String horario_inicial, String horario_saida){
+        Secretario secretario = new Secretario();
+        secretario.setNome(nome);
+        secretario.setEmail(email);
+        secretario.setNumero_contato(numero_contato);
+        secretario.setSenha(senha);
+        secretario.setAcesso("Funcionario");
+        secretario.setHorario_inicio(horario_inicial);
+        secretario.setHorario_saida(horario_saida);
+        academia.getSecretarios().add(secretario);
+    }
 
     public void acessarFuncionarios(){
         System.out.println("====== O que deseja ver? ======");
@@ -133,22 +89,17 @@ public class Administrador extends Usuario {
         }
     }
     
-    public void removerFuncionario(){ 
+    public void removerFuncionario(String nome){ 
         while(true){
-
-            System.out.println("-- Quem você deseja remover? --");
-            System.out.println("Nome: ");
-            String remover = input.nextLine().toUpperCase();
             System.out.println();
             System.out.println("====== Qual é a função deste funcionario? ======");
             System.out.println("====== 1 -> Personal Trainer ======");
             System.out.println("====== 2 -> Secretario ======");
             System.out.println();
-                
             String escolha = input.nextLine().toUpperCase();
             if(escolha.equals("1")){
                 for(int personal = 0; personal < academia.getPersonais().size(); personal++){
-                    if(academia.getPersonais().get(personal).nome.equals(remover)){
+                    if(academia.getPersonais().get(personal).getNome().equals(nome)){
                         academia.getPersonais().remove(personal);
                     }else if (personal == (academia.getPersonais().size() - 1)) {
                         System.out.println("Usuario não encontrado");
@@ -169,22 +120,13 @@ public class Administrador extends Usuario {
             
             if(escolha.equals("2")){
                 for(int secretario = 0; secretario < academia.getSecretarios().size(); secretario ++){
-                    if(academia.getSecretarios().get(secretario).nome.equals(remover)){
+                    if(academia.getSecretarios().get(secretario).getNome().equals(nome)){
                         academia.getSecretarios().remove(secretario);
                     }else if (secretario == (academia.getSecretarios().size() - 1)) {
                         System.out.println("Usuario não encontrado");
                     }         
                 }
-                System.out.println();
-                System.out.println(" DESEJA CONTINUAR REMOVENDO? ");
-                System.out.println(" 1 - SIM    2 - NÃO");
-                escolha = input.nextLine().toUpperCase();
-                if(escolha.equals("1")){
-                    continue;
-                }
-                else if(escolha.equals("2")){
-                    break;
-                }
+                
             }
             else{
                 System.out.println("====== Qual será a função do funcionário no sistema ======");
@@ -242,11 +184,18 @@ public class Administrador extends Usuario {
     }
 
     public void acessarReceitaDaAcademia() {
+        double receita = 0;
+        for(Cliente cliente : academia.getClientes()){
+            receita = receita + academia.getMensaliade();    
+        }
+        academia.getFinanceiro().setReceita(receita);
         System.out.println("Receita: " + academia.getFinanceiro().getReceita());
         
     }
 
     public void acessarDespesasDaAcademia(){
+        double despesa = plano.getValor();
+        academia.getFinanceiro().setDespesas(despesa);   
         System.out.println("Despesas: " + academia.getFinanceiro().getDespesas());
     }
 
@@ -270,49 +219,46 @@ public class Administrador extends Usuario {
                    
     }
 
-    public void acessarPerfilFuncionario() {
+    public void acessarPerfilFuncionario(String nome) {
         System.out.println("====== Perfil do funcionario ======");
+        System.out.println();
         System.out.println("====== Qual é a função do funcionário no sistema ======");
         System.out.println("====== 1 -> Personal Trainer ======");
         System.out.println("====== 2 -> Secretario ======");
         
         while(true){
+            System.out.println();
+            System.out.println("ESCOLHA: ");
             String escolha = input.nextLine().toUpperCase();
             if(escolha.equals("1")){
-                System.out.println();
-                System.out.println(" Digite o nome do Personal Trainer: ");
-                String nome = input.nextLine().toUpperCase();
-                    for(int personal = 0; personal < academia.getPersonais().size(); personal++){
-                        if(academia.getPersonais().get(personal).nome.equals(nome)){
-                            System.out.println();
-                            System.out.println("Nome: " + academia.getPersonais().get(personal).getNome());
-                            System.out.println("Email: " + academia.getPersonais().get(personal).getEmail());
-                            System.out.println("Contato: " + academia.getPersonais().get(personal).getNumero_contato());
-                            System.out.println("Acesso: " + academia.getPersonais().get(personal).getAcesso()); 
-                            System.out.println("Horario de atividade: " + academia.getPersonais().get(personal).getHorario_inicio() + "até " + academia.getPersonais().get(personal).getHorario_saida());        
-                        }else if (personal == (academia.getPersonais().size() - 1)) {
-                            System.out.println("Usuario não encontrado");
-                        }
+                for(int personal = 0; personal < academia.getPersonais().size(); personal++){
+                    if(academia.getPersonais().get(personal).getNome().equals(nome)){
+                        System.out.println();
+                        System.out.println("Nome: " + academia.getPersonais().get(personal).getNome());
+                        System.out.println("Email: " + academia.getPersonais().get(personal).getEmail());
+                        System.out.println("Contato: " + academia.getPersonais().get(personal).getNumero_contato());
+                        System.out.println("Acesso: " + academia.getPersonais().get(personal).getAcesso()); 
+                        System.out.println("Horario de atividade: " + academia.getPersonais().get(personal).getHorario_inicio() + "até " + academia.getPersonais().get(personal).getHorario_saida());        
+                    }else if (personal == (academia.getPersonais().size() - 1)) {
+                        System.out.println("Usuario não encontrado");
                     }
-                break;
+                }
+                break;                   
             }
 
             if(escolha.equals("2")){
-                System.out.println();
-                System.out.println(" Digite o nome do Secretário");
-                String nome = input.nextLine().toUpperCase();
-                    for(int secretario = 0; secretario < academia.getSecretarios().size(); secretario++){
-                        if(academia.getSecretarios().get(secretario).nome.equals(nome)){
-                            System.out.println();
-                            System.out.println("Nome: " + academia.getSecretarios().get(secretario).getNome());
-                            System.out.println("Email: " + academia.getSecretarios().get(secretario).getEmail());
-                            System.out.println("Contato: " + academia.getSecretarios().get(secretario).getNumero_contato());
-                            System.out.println("Acesso: " + academia.getSecretarios().get(secretario).getAcesso()); 
-                            System.out.println("Horario de atividade: " + academia.getSecretarios().get(secretario).getHorario_inicio() + "até " + academia.getSecretarios().get(secretario).getHorario_saida());
-                        }else if (secretario == (academia.getSecretarios().size() - 1)) {
-                            System.out.println("Usuario não encontrado");
-                        }
+                for(int secretario = 0; secretario < academia.getSecretarios().size(); secretario++){
+                    if(academia.getSecretarios().get(secretario).getNome().equals(nome)){
+                        System.out.println();
+                        System.out.println("Nome: " + academia.getSecretarios().get(secretario).getNome());
+                        System.out.println("Email: " + academia.getSecretarios().get(secretario).getEmail());
+                        System.out.println("Contato: " + academia.getSecretarios().get(secretario).getNumero_contato());
+                        System.out.println("Acesso: " + academia.getSecretarios().get(secretario).getAcesso()); 
+                        System.out.println("Horario de atividade: " + academia.getSecretarios().get(secretario).getHorario_inicio() + "até " + academia.getSecretarios().get(secretario).getHorario_saida());
+                    }else if (secretario == (academia.getSecretarios().size() - 1)) {
+                        System.out.println("Usuario não encontrado");
                     }
+                }
                 break;
             }
 
@@ -338,7 +284,7 @@ public class Administrador extends Usuario {
         System.out.println("BIOTIPO: " + nome.getDados().getBiotipo());
         System.out.println("OBJETIVO: " + nome.getDados().getObjetivo());
         System.out.println("TAXA METABOLICA: " + nome.getDados().getTaxa_metabolica_basal());
-        System.out.printf("IMC:  %.1f", + nome.getDados().getMassaCorporal());
+        System.out.println("IMC: " + nome.getDados().getMassaCorporal());
         System.out.println();                   
     }
 
@@ -357,22 +303,22 @@ public class Administrador extends Usuario {
         System.out.println();
         if(nome.getAvaliacoes().get(ultimo).getPeso() < nome.getAvaliacoes().get(penultimo).getPeso()){
             System.out.println("Você perdeu peso");
-            System.out.println("Seu peso mudou de " + nome.getAvaliacoes().get(penultimo).getPeso() + " kilos para " + nome.getAvaliacoes().get(ultimo).getPeso() + " kilos");
+            System.out.println("Seu peso mudou de " + nome.getAvaliacoes().get(penultimo).getPeso() + "kilos para " + nome.getAvaliacoes().get(ultimo).getPeso() + "kilos");
         }
         else if(nome.getAvaliacoes().get(ultimo).getPeso() > nome.getAvaliacoes().get(penultimo).getPeso()){
             System.out.println("Você ganhou peso");
-            System.out.println("Seu peso mudou de " + nome.getAvaliacoes().get(penultimo).getPeso() + " kilos para " + nome.getAvaliacoes().get(ultimo).getPeso() + " kilos");
+            System.out.println("Seu peso mudou de " + nome.getAvaliacoes().get(penultimo).getPeso() + "kilos para " + nome.getAvaliacoes().get(ultimo).getPeso() + "kilos");
         }
         else{
             System.out.println("Seu peso continua igual");
         }
         if(nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal() < nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal()){
             System.out.println();
-            System.out.println("Sua taxa metabolica diminuiu de " + nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + " para " + nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
+            System.out.println("Sua taxa metabolica diminuiu de " + nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + "para " + nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
         }
         else if(nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal() > nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal()){
             System.out.println();
-            System.out.println("Sua taxa metabolica aumentou de " + nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + " para " + nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
+            System.out.println("Sua taxa metabolica aumentou de " + nome.getAvaliacoes().get(penultimo).getTaxa_metabolica_basal() + "para " + nome.getAvaliacoes().get(ultimo).getTaxa_metabolica_basal());
         }
         else{
             System.out.println();
@@ -385,12 +331,12 @@ public class Administrador extends Usuario {
         if(nome.getAvaliacoes().get(ultimo).getMassaCorporal() < nome.getAvaliacoes().get(penultimo).getMassaCorporal()){
             System.out.println();
             System.out.println("Seu IMC diminuiu");
-            System.out.printf("Sua massa corporal mudou de %.1f", + nome.getAvaliacoes().get(penultimo).getMassaCorporal() + " para " + nome.getAvaliacoes().get(ultimo).getMassaCorporal());
+            System.out.println("Sua massa corporal mudou de " + nome.getAvaliacoes().get(penultimo).getMassaCorporal() + "para " + nome.getAvaliacoes().get(ultimo).getMassaCorporal());
         }
         else if(nome.getAvaliacoes().get(ultimo).getMassaCorporal() > nome.getAvaliacoes().get(penultimo).getMassaCorporal()){
             System.out.println();
             System.out.println("Seu IMC aumentou");
-            System.out.printf("Sua massa corporal mudou de %.1f", + nome.getAvaliacoes().get(penultimo).getMassaCorporal() + " para " + nome.getAvaliacoes().get(ultimo).getMassaCorporal());
+            System.out.println("Sua massa corporal mudou de " + nome.getAvaliacoes().get(penultimo).getMassaCorporal() + "para " + nome.getAvaliacoes().get(ultimo).getMassaCorporal());
         }
         else{
             System.out.println();
@@ -574,7 +520,7 @@ public class Administrador extends Usuario {
         System.out.println();
         System.out.println(" -- SECRETARIOS -- ");
         for(int secretarios = 0; secretarios < academia.getPersonais().size(); secretarios++){
-            System.out.println(academia.getPersonais().get(secretarios).getNome()+":" + academia.getPersonais().get(secretarios).getHorario_inicio() + "à" + academia.getPersonais().get(secretarios).getHorario_saida()  );
+            System.out.println(academia.getSecretarios().get(secretarios).getNome()+":" + academia.getSecretarios().get(secretarios).getHorario_inicio() + " à " + academia.getSecretarios().get(secretarios).getHorario_saida()  );
         }
     }
 
@@ -593,10 +539,8 @@ public class Administrador extends Usuario {
                Treino treino = new Treino();
                treino.setCliente(nome);
                treino.setTipo_de_treino("TIPO A");
-               for(int exercicios = 0; exercicios < academia.getTreino_A().size(); exercicios++){
-                    System.out.println(academia.getTreino_A().get(exercicios));
-               }
                while(true){
+                    System.out.println(academia.getTreino_A());
                     System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
                     String exercicio = input.nextLine().toUpperCase();
                     for(int exercicios = 0; exercicios < academia.getTreino_A().size(); exercicios++){
@@ -607,11 +551,11 @@ public class Administrador extends Usuario {
                             System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
                         }
                     }
-                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
+                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS DESTE TIPO?");
                     System.out.println(" 1 - SIM    2 - NÃO");
                     escolha = input.nextLine().toUpperCase();
                     if(escolha.equals("1")){
-                        break;
+                        continue;
                     }
                     else if(escolha.equals("2")){
                         nome.getTreinos_do_aluno().add(treino);
@@ -625,10 +569,8 @@ public class Administrador extends Usuario {
                 Treino treino = new Treino();
                 treino.setCliente(nome);
                 treino.setTipo_de_treino("TIPO B");
-                for(int exercicios = 0; exercicios < academia.getTreino_B().size(); exercicios++){
-                        System.out.println(academia.getTreino_B().get(exercicios));
-                }
                 while(true){
+                    System.out.println(academia.getTreino_B());                   
                     System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
                     String exercicio = input.nextLine().toUpperCase();
                     for(int exercicios = 0; exercicios < academia.getTreino_B().size(); exercicios++){
@@ -639,27 +581,25 @@ public class Administrador extends Usuario {
                            System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
                         }
                     }
-                        System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
-                        System.out.println(" 1 - SIM    2 - NÃO");
-                        escolha = input.nextLine().toUpperCase();
-                        if(escolha.equals("1")){
-                            break;
-                        }
-                        else if(escolha.equals("2")){
-                            nome.getTreinos_do_aluno().add(treino);
-                            voltar = true;
-                            break;
-                        }
+                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS DESTE TIPO?");
+                    System.out.println(" 1 - SIM    2 - NÃO");
+                    escolha = input.nextLine().toUpperCase();
+                    if(escolha.equals("1")){
+                        continue;
+                    }
+                    else if(escolha.equals("2")){
+                        nome.getTreinos_do_aluno().add(treino);
+                        voltar = true;
+                        break;
+                    }
                 }
             }
             else if(escolha.equals("C")){
                 Treino treino = new Treino();
                 treino.setCliente(nome);
                 treino.setTipo_de_treino("TIPO C");
-                for(int exercicios = 0; exercicios < academia.getTreino_C().size(); exercicios++){
-                        System.out.println(academia.getTreino_C().get(exercicios));
-                }
                 while(true){
+                    System.out.println(academia.getTreino_C());
                     System.out.println(" DIGITE O NOME DO EXERCICIO PARA ADICIONAR AO TREINO ");
                     String exercicio = input.nextLine().toUpperCase();
                     for(int exercicios = 0; exercicios < academia.getTreino_C().size(); exercicios++){
@@ -671,11 +611,11 @@ public class Administrador extends Usuario {
                             System.out.println("EXERCICIO NÃO REGISTRADO NO SISTEMA");
                         }
                     }
-                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS?");
+                    System.out.println("DESEJA CONTINUAR ADICIONANDO EXERCICIOS DESTE TIPO?");
                     System.out.println(" 1 - SIM    2 - NÃO");
                     escolha = input.nextLine().toUpperCase();
                     if(escolha.equals("1")){
-                        break;
+                        continue;
                     }
                     else if(escolha.equals("2")){
                         nome.getTreinos_do_aluno().add(treino);
@@ -763,6 +703,7 @@ public class Administrador extends Usuario {
                         for(int exercicios = 0; exercicios < nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
                             if(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
                                 nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
+                                break;
                             }else if(exercicios == nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
                                 System.out.println();
                                 System.out.println("EXERCICIO NÃO ENCONTRADO");
@@ -786,6 +727,7 @@ public class Administrador extends Usuario {
                         for(int exercicios = 0; exercicios < nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
                             if(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
                                 nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
+                                break;
                             }else if(exercicios == nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
                                 System.out.println();
                                 System.out.println("EXERCICIO NÃO ENCONTRADO");
@@ -809,6 +751,7 @@ public class Administrador extends Usuario {
                         for(int exercicios = 0; exercicios < nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size(); exercicios++){
                             if(nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().get(exercicios).equals(exercicio)){
                                 nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().remove(exercicios);
+                                break;
                             }else if(exercicios == nome.getTreinos_do_aluno().get(treino).getListaDeTreinos().size() - 1){
                                 System.out.println();
                                 System.out.println("EXERCICIO NÃO ENCONTRADO");

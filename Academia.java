@@ -1,4 +1,4 @@
-package Projeto_Academia;
+
 import java.util.ArrayList;
 
 public class Academia {
@@ -7,7 +7,7 @@ public class Academia {
     private Administrador administrador;
     ArrayList<Plano> planos = new ArrayList();
     private Financeiro financeiro;
-    private int mensaliade = 80;
+    private double mensaliade = 80;
     ArrayList<Cliente> clientes = new ArrayList();
     ArrayList<Personal_trainer> personais = new ArrayList();
     ArrayList<Secretario> secretarios = new ArrayList();
@@ -128,11 +128,11 @@ public class Academia {
         return treino_C;
     }
 
-    public void setMensaliade(int mensaliade) {
+    public void setMensaliade(double mensaliade) {
         this.mensaliade = mensaliade;
     }
     
-    public int getMensaliade() {
+    public double getMensaliade() {
         return mensaliade;
     }
 

@@ -1,4 +1,3 @@
-package Projeto_Academia;
 import java.util.Scanner;
 
 public class Secretario extends Usuario {
@@ -392,5 +391,6 @@ public class Secretario extends Usuario {
     public String getHorario_saida() {
         return horario_saida;
     }
+    
     
 }

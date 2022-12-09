@@ -1,4 +1,3 @@
-package Projeto_Academia;
 import java.util.Scanner;
 
 public class Personal_trainer extends Usuario{
@@ -441,7 +440,7 @@ public class Personal_trainer extends Usuario{
         System.out.println();
         System.out.println(" -- SECRETARIOS -- ");
         for(int secretarios = 0; secretarios < academia.getPersonais().size(); secretarios++){
-            System.out.println(academia.getPersonais().get(secretarios).getNome()+":" + academia.getPersonais().get(secretarios).getHorario_inicio() + "à" + academia.getPersonais().get(secretarios).getHorario_saida()  );
+            System.out.println(academia.getSecretarios().get(secretarios).getNome()+":" + academia.getSecretarios().get(secretarios).getHorario_inicio() + " à " + academia.getSecretarios().get(secretarios).getHorario_saida()  );
         }
     }
     

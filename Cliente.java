@@ -1,4 +1,3 @@
-package Projeto_Academia;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -209,4 +208,5 @@ public class Cliente extends Usuario {
     public ArrayList<Treino> getTreinos_do_aluno() {
         return treinos_do_aluno;
     }
+
 }

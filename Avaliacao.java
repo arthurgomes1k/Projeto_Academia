@@ -1,4 +1,3 @@
-package Projeto_Academia;
 public class Avaliacao {
 
     private Cliente cliente;
@@ -21,31 +20,31 @@ public class Avaliacao {
         if(getSexo().equals("MULHER")){
              
             if(getIdade() > 10 && getIdade() < 18){
-               this.taxa_metabolica_basal = 13.3 * getPeso() + 692.6;
+               this.taxa_metabolica_basal = 13.384 * getPeso() + 692.6;
             }
             else if(getIdade() > 18 && getIdade() < 30){
-               this.taxa_metabolica_basal = 14.8 * getPeso() + 486.6;
+               this.taxa_metabolica_basal = 14.818 * getPeso() + 486.6;
             }
             else if(getIdade() > 30 && getIdade() < 60){
-               this.taxa_metabolica_basal = 8.1 * getPeso() + 845.6;
+               this.taxa_metabolica_basal = 8.126 * getPeso() + 845.6;
             }
             else if(getIdade() > 60){
-               this.taxa_metabolica_basal = 9.0* getPeso() + 658.5;
+               this.taxa_metabolica_basal = 9.082 * getPeso() + 658.5;
             }
         }
             
         else if(getSexo().equals("HOMEM")){
             if(getIdade() > 10 && getIdade() < 18){
-               this.taxa_metabolica_basal = 17.6 * getPeso() + 658.2;
+               this.taxa_metabolica_basal = 17.686 * getPeso() + 658.2;
             }
             else if(getIdade() > 18 && getIdade() < 30){
-               this.taxa_metabolica_basal = 15.0 * getPeso() + 692.2;
+               this.taxa_metabolica_basal = 15.057 * getPeso() + 692.2;
             }
             else if(getIdade() > 30 && getIdade() < 60){
-               this.taxa_metabolica_basal = 11.4 * getPeso() + 873.1;
+               this.taxa_metabolica_basal = 11.472 * getPeso() + 873.1;
             }
             else if(getIdade() > 60){
-               this.taxa_metabolica_basal = 11.7 * getPeso() + 587.7;
+               this.taxa_metabolica_basal = 11.711 * getPeso() + 587.7;
             }
         }
     }
