@@ -377,11 +377,29 @@ public class Telas {
             System.out.println("Escolha: ");
             String escolha = input.nextLine().toUpperCase();
             if(escolha.equals("1")){
-
-                dono.gerarTesteCliente(aluno, escolha, 0, 0, 0, escolha, escolha, escolha);
+                System.out.println("Sexo: ");
+                String sexo = input.nextLine().toUpperCase();
+                System.out.println("Biotipo: ");
+                String biotipo = input.nextLine().toUpperCase();
+                System.out.println("Idade: ");
+                int idade = input.nextInt();
+                System.out.println("Altura: ");
+                double altura = input.nextDouble();
+                System.out.println("Peso: ");
+                double peso = input.nextDouble();
+                System.out.println("Objetivo: ");
+                String objetivo = input.nextLine().toUpperCase();
+                System.out.println("Data de avaliação: ");
+                String data_avaliacao = input.nextLine().toUpperCase();
+                dono.gerarTesteCliente(aluno, sexo, idade, peso, altura, biotipo, objetivo, data_avaliacao);
+                break;
             }
-            else if(escolha.equals("2")){}
-            else if(escolha.equals("3")){}
+            else if(escolha.equals("2")){
+                dono.acessarPerfilClientes(aluno);
+            }
+            else if(escolha.equals("3")){
+                
+            }
             else if(escolha.equals("4")){}
             else if(escolha.equals("5")){}
             else if(escolha.equals("6")){}

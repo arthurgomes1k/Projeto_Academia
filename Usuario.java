@@ -1,6 +1,6 @@
 
 public class Usuario {
-
+    
     protected String nome;
     protected String senha;
     protected String acesso;
@@ -20,17 +20,8 @@ public class Usuario {
         }
     }        
 
-    public void acessarPerfil() {
-        
-    }
-
-    public void acessarTreinos(){
-
-    }
-
-    public void acessarPersonais(){
-        
-    }
+    public void acessarPerfil(){}
+    
 
     //Sets e Gets Padrões
     public void setNome(String nome) {

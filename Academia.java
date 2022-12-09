@@ -35,7 +35,8 @@ public class Academia {
         planos.add(master);
         planos.add(muscle);
     }
-    
+
+
     //Sets e Gets Padrões
 
     public String getNome_da_academia() {
@@ -125,12 +126,5 @@ public class Academia {
     public ArrayList<String> getTreino_C() {
         return treino_C;
     }
-
-
-
-
-    
-
-    
 
 }
