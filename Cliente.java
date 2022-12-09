@@ -17,8 +17,8 @@ public class Cliente extends Usuario {
     }
 
     @Override
-    public void acessarPerfil(Cliente nome) {
-        System.out.println("Perfil de " + nome.getNome());
+    public void acessarPerfil() {
+        System.out.println("Perfil de " + getNome());
         System.out.println();
         System.out.println("Nome: " + getNome());
         System.out.println("Email: " + getEmail());

@@ -17,7 +17,7 @@ public class Avaliacao {
 
     public void setTaxa_metabolica_basal() { 
 
-        if(getSexo().equals("Mulher")){
+        if(getSexo().equals("MULHER")){
              
             if(getIdade() > 10 && getIdade() < 18){
                this.taxa_metabolica_basal = 13.384 * getPeso() + 692.6;
@@ -33,7 +33,7 @@ public class Avaliacao {
             }
         }
             
-        else if(getSexo().equals("Homem")){
+        else if(getSexo().equals("HOMEM")){
             if(getIdade() > 10 && getIdade() < 18){
                this.taxa_metabolica_basal = 17.686 * getPeso() + 658.2;
             }

@@ -1,12 +1,15 @@
 import java.util.Scanner;
 
 public class Telas {
+    
     Scanner input = new Scanner(System.in);
     Administrador dono = new Administrador();
     Academia academia = new Academia();
+    Financeiro financeiro = new Financeiro();
     
     public void inicializar(){
-  
+        academia.criarPlanos();
+        telaDeCadastroELogin();
     }
   
     public void telaDeCadastroELogin(){
@@ -64,7 +67,10 @@ public class Telas {
                 break;
               }
               dono.realizarRegistro(nome, cpf, email, numero_contato, senha);
+              dono.setAcademia(academia);
               academia.setNome_da_academia(nome_da_academia);
+              academia.setAdministrador(dono);
+              academia.setFinanceiro(financeiro);
               System.out.println();
               System.out.println("====== PÁGINA DE PLANOS ======");
               System.out.println();
@@ -216,9 +222,11 @@ public class Telas {
     }    
 
     public void telaInicialAdministrador(){
-        while(true){
+        boolean voltar = false;
+        while(voltar == false){
             System.out.println("====== MENU INICIAL ======");
             System.out.println();
+            System.out.println("-- DIGITE 0 PARA SAIR --");
             System.out.println("-- DIGITE 1 PARA ACESSAR ALUNOS --");
             System.out.println("-- DIGITE 2 PARA ACESSAR FUNCIONARIOS --");
             System.out.println("-- DIGITE 3 PARA ACESSAR TREINOS --");
@@ -231,7 +239,7 @@ public class Telas {
                 System.out.println("Escolha: ");
                 String escolha = input.nextLine().toUpperCase();
                 if(escolha.equals("1")){
-                    
+                    telaListaDeAlunos();
                 }                
                 else if(escolha.equals("2")){
                     System.out.println("====== PÁGINA DE FUNCIONARIOS ======");
@@ -244,31 +252,34 @@ public class Telas {
                     System.out.println("-- DIGITE 5 PARA ACESSAR PÁGINA DE HORÁRIOS --");
                 }
                 else if(escolha.equals("3")){
-                    System.out.println("-- PÁGINA DE TREINOS --");
-                    System.out.println();
-                    System.out.println("-- DIGITE 0 PARA VOLTAR --");
-                    System.out.println("-- DIGITE 1 PARA ACESSAR LISTA DE TREINOS --");
-                    System.out.println("-- DIGITE 2 PARA ADICIONAR TRENO AO SISTEMA --");
-                    System.out.println("-- DIGITE 3 PARA REMOVER TREINO DO SISTEMA --");
+                    telaTreinosSistema();
                 }                  
                 else if(escolha.equals("4")){
-                    System.out.println("-- DIGITE 0 PARA VOLTAR --");
-                    System.out.println("-- DIGITE 1 PARA ACESSAR RECEITA --");
-                    System.out.println("-- DIGITE 2 PARA ACESSAR DESPESAS");
+                    telaFinanceira();
                 }
                 else if(escolha.equals("5")){
                     dono.acessarPerfil();
+                }
+                else if(escolha.equals("0")){
+                    voltar = true;
+                    break;
+                }
+                else{
+
+                    System.out.println("====== MENU INICIAL ======");
+                    System.out.println();
+                    System.out.println("-- DIGITE 0 PARA SAIR --");
+                    System.out.println("-- DIGITE 1 PARA ACESSAR ALUNOS --");
+                    System.out.println("-- DIGITE 2 PARA ACESSAR FUNCIONARIOS --");
+                    System.out.println("-- DIGITE 3 PARA ACESSAR TREINOS --");
+                    System.out.println("-- DIGITE 4 PARA ACESSAR FINANCEIRO --");
+                    System.out.println("-- DIGITE 5 PARA ACESSAR PERFIL");
+                    System.out.println();
                 }
                 
             }
         }
     }
-
-    public void telaInicialPersonal(){}
-
-    public void telaInicialSecretario(){}
-
-    public void telaInicialCliente(){}
 
     public void telaListaDeAlunos(){
         boolean voltar = false;
@@ -337,7 +348,7 @@ public class Telas {
                         String nome = input.nextLine().toUpperCase();
                         for(int aluno = 0; aluno < academia.getClientes().size(); aluno++){
                             if(academia.getClientes().get(aluno).getNome().equals(nome)){
-
+                                telaDeUmAlunoEspecifico(academia.getClientes().get(aluno));
                             }
                         }
                     }
@@ -361,53 +372,147 @@ public class Telas {
     }
 
     public void telaDeUmAlunoEspecifico(Cliente aluno){
-        System.out.println("ALUNO: " + aluno.getNome());
-        System.out.println();
-        System.out.println("-- DIGITE 0 PARA VOLTAR --");
-        System.out.println("-- DIGITE 1 PARA FAZER AVALIAÇÃO DO ALUNO --");
-        System.out.println("-- DIGITE 2 PARA ACESSAR PERFIL DO CLIENTE --");
-        System.out.println("-- DIGITE 3 PARA ACESSAR ULTIMA AVALIAÇÃO DO CLIENTE");
-        System.out.println("-- DIGITE 4 PARA ACESSAR HISTORICO DE AVALIAÇÕES DO CLIENTE");
-        System.out.println("-- DIGITE 5 PARA GERAR RELATORIO DO CLIENTE --");
-        System.out.println("-- DIGITE 6 PARA ADICIONAR TREINO DO CLIENTE --");
-        System.out.println("-- DIGITE 7 PARA ACESSAR TREINOS DO ALUNO --");
-        System.out.println("-- DIGITE 8 PARA REMOVER TREINO DO ALUNO");  
-        while(true){
+        boolean voltar = false;
+        while(voltar == false){
+            System.out.println("ALUNO: " + aluno.getNome());
             System.out.println();
-            System.out.println("Escolha: ");
-            String escolha = input.nextLine().toUpperCase();
-            if(escolha.equals("1")){
-                System.out.println("Sexo: ");
-                String sexo = input.nextLine().toUpperCase();
-                System.out.println("Biotipo: ");
-                String biotipo = input.nextLine().toUpperCase();
-                System.out.println("Idade: ");
-                int idade = input.nextInt();
-                System.out.println("Altura: ");
-                double altura = input.nextDouble();
-                System.out.println("Peso: ");
-                double peso = input.nextDouble();
-                System.out.println("Objetivo: ");
-                String objetivo = input.nextLine().toUpperCase();
-                System.out.println("Data de avaliação: ");
-                String data_avaliacao = input.nextLine().toUpperCase();
-                dono.gerarTesteCliente(aluno, sexo, idade, peso, altura, biotipo, objetivo, data_avaliacao);
-                break;
-            }
-            else if(escolha.equals("2")){
-                dono.acessarPerfilClientes(aluno);
-            }
-            else if(escolha.equals("3")){
-                
-            }
-            else if(escolha.equals("4")){}
-            else if(escolha.equals("5")){}
-            else if(escolha.equals("6")){}
-            else if(escolha.equals("7")){}
-            else if(escolha.equals("8")){}
-            else if(escolha.equals("0")){}
-    
-        }
+            System.out.println("-- DIGITE 0 PARA VOLTAR --");
+            System.out.println("-- DIGITE 1 PARA FAZER AVALIAÇÃO DO ALUNO --");
+            System.out.println("-- DIGITE 2 PARA ACESSAR PERFIL DO CLIENTE --");
+            System.out.println("-- DIGITE 3 PARA ACESSAR ULTIMA AVALIAÇÃO DO CLIENTE");
+            System.out.println("-- DIGITE 4 PARA ACESSAR HISTORICO DE AVALIAÇÕES DO CLIENTE");
+            System.out.println("-- DIGITE 5 PARA GERAR RELATORIO DO CLIENTE --");
+            System.out.println("-- DIGITE 6 PARA ADICIONAR TREINO DO CLIENTE --");
+            System.out.println("-- DIGITE 7 PARA ACESSAR TREINOS DO ALUNO --");
+            System.out.println("-- DIGITE 8 PARA REMOVER TREINO DO ALUNO");  
+            while(true){
+                System.out.println();
+                System.out.println("Escolha: ");
+                String escolha = input.nextLine().toUpperCase();
+                if(escolha.equals("1")){
+                    System.out.println("Sexo: ");
+                    String sexo = input.nextLine().toUpperCase();
+                    System.out.println("Biotipo: ");
+                    String biotipo = input.nextLine().toUpperCase();
+                    System.out.println("Idade: ");
+                    int idade = input.nextInt();
+                    System.out.println("Altura: ");
+                    double altura = input.nextDouble();
+                    System.out.println("Peso: ");
+                    double peso = input.nextDouble();
+                    System.out.println("Objetivo: ");
+                    String objetivo = input.nextLine().toUpperCase();
+                    System.out.println("Data de avaliação: ");
+                    String data_avaliacao = input.nextLine().toUpperCase();
+                    dono.gerarTesteCliente(aluno, sexo, idade, peso, altura, biotipo, objetivo, data_avaliacao);
+                    break;
+                }
+                else if(escolha.equals("2")){
+                    dono.acessarPerfilClientes(aluno);
+                    break;
+                }
+                else if(escolha.equals("3")){
+                    dono.acessarTesteCliente(aluno);
+                    break;
+                }
+                else if(escolha.equals("4")){
+                    dono.acessarHistoricoDeTesteDoCliente(aluno);
+                    break;
+                }
+                else if(escolha.equals("5")){
+                    dono.gerarRelatorioCliente(aluno);
+                    break;
+                }
+                else if(escolha.equals("6")){
+                    dono.adicionarTreinosAluno(aluno);
+                    break;
+                }
+                else if(escolha.equals("7")){
+                    dono.acessarTreinoAluno(aluno);
+                    break;
+                }
+                else if(escolha.equals("8")){
+                    dono.removerTreinoAluno(aluno);
+                    break;
+                }
+                else if(escolha.equals("0")){
+                    voltar = true;
+                    break;
+                }
+        
+            }       
+        }   
         
     }
+
+    public void telaTreinosSistema(){
+        boolean voltar = false;
+        while(voltar == false){
+            System.out.println("-- PÁGINA DE TREINOS --");
+            System.out.println();
+            System.out.println("-- DIGITE 0 PARA VOLTAR --");
+            System.out.println("-- DIGITE 1 PARA ACESSAR LISTA DE TREINOS --");
+            System.out.println("-- DIGITE 2 PARA ADICIONAR TRENO AO SISTEMA --");
+            System.out.println("-- DIGITE 3 PARA REMOVER TREINO DO SISTEMA --");
+            while(true){
+                System.out.println();
+                System.out.println("Escolha: ");
+                String escolha = input.nextLine().toUpperCase();
+                if(escolha.equals("1")){
+                    dono.acessarTreinosSistema();
+                }
+                else if(escolha.equals("2")){
+                    dono.adicionarTreinoSistema();
+                }
+                else if(escolha.equals("3")){
+                    dono.removerTreinoSistema();
+                }
+                else if(escolha.equals("0")){
+                    voltar = true;
+                    break;
+                }
+                else{
+                    System.out.println("-- PÁGINA DE TREINOS --");
+                    System.out.println();
+                    System.out.println("-- DIGITE 0 PARA VOLTAR --");
+                    System.out.println("-- DIGITE 1 PARA ACESSAR LISTA DE TREINOS --");
+                    System.out.println("-- DIGITE 2 PARA ADICIONAR TRENO AO SISTEMA --");
+                    System.out.println("-- DIGITE 3 PARA REMOVER TREINO DO SISTEMA --");
+                }
+            }
+        }           
+    }
+
+    public void telaFinanceira(){
+        boolean voltar = false;
+        while(voltar == false){
+            System.out.println("-- DIGITE 0 PARA VOLTAR --");
+            System.out.println("-- DIGITE 1 PARA ACESSAR RECEITA --");
+            System.out.println("-- DIGITE 2 PARA ACESSAR DESPESAS");
+            while(true){
+                System.out.println();
+                System.out.println("Escolha: ");
+                String escolha = input.nextLine().toUpperCase();
+                if(escolha.equals("1")){
+                    dono.getAcademia().getFinanceiro().getReceita();
+                }
+                else if(escolha.equals("2")){
+                    dono.getAcademia().getFinanceiro().getDespesas();
+                }
+                else if(escolha.equals("0")){
+                    voltar = true;
+                    break;
+                }
+                else{
+                    System.out.println("-- DIGITE 0 PARA VOLTAR --");
+                    System.out.println("-- DIGITE 1 PARA ACESSAR RECEITA --");
+                    System.out.println("-- DIGITE 2 PARA ACESSAR DESPESAS");
+                }
+            }
+        }
+        
+        
+    }
+
 }
+
