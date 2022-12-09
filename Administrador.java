@@ -283,8 +283,8 @@ public class Administrador extends Usuario {
         System.out.println("ALTURA: " + nome.getDados().getAltura());
         System.out.println("BIOTIPO: " + nome.getDados().getBiotipo());
         System.out.println("OBJETIVO: " + nome.getDados().getObjetivo());
-        System.out.println("TAXA METABOLICA: " + nome.getDados().getTaxa_metabolica_basal());
-        System.out.println("IMC: " + nome.getDados().getMassaCorporal());
+        System.out.printf("TAXA METABOLICA: %.1f ", + nome.getDados().getTaxa_metabolica_basal());
+        System.out.printf("IMC: %.1f", + nome.getDados().getMassaCorporal());
         System.out.println();                   
     }
 
