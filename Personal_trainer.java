@@ -1,3 +1,4 @@
+package Projeto_Academia;
 import java.util.Scanner;
 
 public class Personal_trainer extends Usuario{

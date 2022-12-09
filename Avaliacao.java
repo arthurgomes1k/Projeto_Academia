@@ -1,3 +1,4 @@
+package Projeto_Academia;
 public class Avaliacao {
 
     private Cliente cliente;
