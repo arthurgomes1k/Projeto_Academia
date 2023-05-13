@@ -1,15 +1,10 @@
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 public class Tests {
 
-    // public static void main(String[] args){
-
-
-    // }
-    
     @Test
     public  void RegistroDoAdministradorTest(){
        

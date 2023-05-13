@@ -1,4 +1,3 @@
-
 public class Financeiro {
 
     private Academia academia;

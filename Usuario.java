@@ -13,10 +13,11 @@ public class Usuario {
             setOnline(true);
             System.out.println("Login realizado com sucesso!");
             System.out.println();
-        }else {
+        }else{
             setOnline(false);
             System.out.println("Senha incorreta!");
             System.out.println();
+            
         }
     }        
 

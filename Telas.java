@@ -141,16 +141,17 @@ public class Telas {
                     if (email.equals("0")) {
                         break;
                     }
+                    System.out.println();
+                    System.out.println("Senha: ");
+                    String senha = input.nextLine();
+                    if (senha.equals("0")) {
+                            break;
+                        }
 
-                    //ANALISAR EMAIL DO ADMINISTRADOR
-                    if (dono.getEmail().equals(email)) {
+                    //ANALISAR LOGIN DO ADMINISTRADOR
+                    if (dono.getEmail().equals(email) && dono.getSenha().equals(senha)) {
                         while (!dono.online) {
-                            System.out.println();
-                            System.out.println("Senha: ");
-                            String senha = input.nextLine();
-                            if (senha.equals("0")) {
-                                break;
-                            }
+
                             dono.realizarLogin(email, senha);
                             telaInicialAdministrador();
                             if (voltarTelas.equals("voltar")) {
@@ -158,7 +159,7 @@ public class Telas {
                             }
                         }
                     } else {
-                        System.out.println("EMAIL NÃO ENCONTRADO");
+                        System.out.println("EMAIL OU SENHA NÃO INCORRETO");
                         System.out.println();
                     }
 
